@@ -1,0 +1,132 @@
+#root {
+  background-color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+}
+
+#main-list {
+  height: 450px;
+  
+  overflow-y: auto;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#header {
+
+  background-color:#F1F1F1;
+  font-family: 'Lobster', cursive;
+  color: black;
+}
+
+#header h1 {
+  text-align: center;
+}
+
+.list-item {
+  font-size: 20pt;
+  background-color: rgb(199, 199, 199);
+  border-radius: 20px;
+  padding: 3% 5%;
+  margin: 1% 0%;
+  width: 65%;
+}
+
+.popup {
+  position: absolute;
+  bottom: 15%;
+  left: 7.5%;
+  right: 7.5%;
+  width: 85%;
+  height: 20%;
+
+  background-color: #F2F2F2;
+  border-radius: 25px;
+}
+
+#add-item {
+  display: none;
+}
+
+#listItem {
+  font-size: 20pt;
+  text-align: center;
+  padding: 3% 0;
+  width: 60%;
+  margin: 4% 20%;
+}
+
+#myBtn {
+  size: 20%;
+  background-color: #e7e7e7;
+  color: black;
+  font-size: 20px;
+  border-radius: 8px;
+  padding: 2% 5%;
+  width: 60%;
+  margin: 0 20%;
+}
+
+#decide {
+  display: ;
+
+  text-align: center;
+}
+
+.close-x {
+  position: absolute;
+  right: 10px;
+  top: -25px;
+
+  font-size: 20pt;
+}
+
+#decide p {
+  padding: 2% 0;
+}
+
+#greeting {
+  font-size: 18pt;
+  margin: 3% 0 1% 0;
+}
+
+#result {
+  font-family: 'Lobster', cursive;
+  font-size: 35pt;
+  margin: 1% 0 1% 0;
+}
+
+#footer {
+  position: absolute;
+  bottom: 2%;
+
+  width: 100%;
+}
+
+#footer .container {
+  width: 85%;
+  margin: 0 auto;
+}
+
+.footer-btn {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background-color: #FAFAFA;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  border-radius: 100%;
+  width: 75px;
+  height: 75px;
+}
+
+#footer div p {
+  color: grey;
+  font-size: 18pt;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
