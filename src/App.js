@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import addIcon from './images/add.png';
+import decideIcon from './images/decide.png';
+import optionsIcon from './images/options.png';
+import hideIcon from './images/hide.png';
 import './App.css';
 
 class ListItem extends Component {
@@ -22,7 +26,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      list: ['Hike', 'Eat', 'Exercise', 'Sleep', 'Code', 'Cry']
+      list: ['Hike', 'Eat', 'Exercise', 'Sleep', 'Code', 'Cry', 'Sleep', 'Code', 'BOTTOM BOIS']
     };
   }
 
@@ -54,24 +58,47 @@ class App extends Component {
     x.innerHTML = this.state.list[index];
   }
 
+  resizeList(val) {
+    // val = 0: half list
+    // val = 1: full list
+    if (val) {
+      document.getElementById("main-list").classList.remove("full-list");
+      document.getElementById("main-list").classList.add("half-list");
+    }
+    else {
+      document.getElementById("main-list").classList.remove("half-list");
+      document.getElementById("main-list").classList.add("full-list");
+    }
+  }
+
   hide() {
-    var x = document.getElementById('decide');
-    var y = document.getElementById('add-item');
+    this.resizeList(0);
+
+    var x = document.getElementById('options');
+    var y = document.getElementById('decide');
+    var z = document.getElementById('add-item');
     x.style.display = "none";
     y.style.display = "none";
+    z.style.display = 'none';
   }
 
   showPopUp(val) {
     this.hide();
-    if (val) {
-      this.decide();
-      var x = document.getElementById('decide');
-      x.style.display = "block";
+    this.resizeList(1);
+    
+    switch (val) {
+      case 0:
+        var x = document.getElementById('options');
+        break;
+      case 1:
+        this.decide();
+        var x = document.getElementById('decide');
+        break;
+      default:
+        var x = document.getElementById('add-item');
     }
-    else {
-      var y = document.getElementById('add-item');
-      y.style.display = "block";
-    }
+
+    x.style.display = "block";
     
   }
 
@@ -90,29 +117,36 @@ class App extends Component {
           <button id="info" type="button">INFO</button>
         </div>
 
-        <div id="main-list">
+        <div id="main-list" className="half-list">
           <ul>
             {listItems}
           </ul>
         </div>
 
-        <div id="add-item" className="popup">
-          <p className="close-x" onClick={() => this.hide()}>X</p>
-          <input type="text" id="listItem" placeholder="Add item"/>
-          <button id="myBtn" type="submit" onClick={() => this.addItem()}>Add</button>
+
+        <div id="options" className="popup">
+          <img className="hide" src={hideIcon} alt="hide" onClick={() => this.hide()} />
+          <p> SETTINGS BOI</p>
         </div>
 
         <div id="decide" className="popup">
-          <p className="close-x" onClick={() => this.hide()}>X</p>
+          <img className="hide" src={hideIcon} alt="hide" onClick={() => this.hide()} />
           <p id="greeting">Today you should</p>
           <p id="result">hire me lmao</p>
         </div>
 
+        <div id="add-item" className="popup">
+          <img className="hide" src={hideIcon} alt="hide" onClick={() => this.hide()} />
+          <input type="text" id="listItem" placeholder="Add item"/>
+          <button id="myBtn" type="submit" onClick={() => this.addItem()}>Add</button>
+        </div>
+
         <div id="footer">
+      
           <div className="container">
-            <div className="footer-btn"><p>gear</p></div>
-            <div className="footer-btn" onClick={() => this.showPopUp(true)}><p>bulb</p></div>
-            <div className="footer-btn" onClick={() => this.showPopUp(false)}><p>add</p></div>
+            <div className="footer-btn" onClick={() => this.showPopUp(0)}><img src={optionsIcon} alt="options"/></div>
+            <div className="footer-btn" onClick={() => this.showPopUp(1)}><img src={decideIcon} alt="decide"/></div>
+            <div className="footer-btn" onClick={() => this.showPopUp(2)}><img src={addIcon} alt="add"/></div>
           </div>
         </div>
 
