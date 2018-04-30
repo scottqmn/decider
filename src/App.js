@@ -11,13 +11,14 @@ class App extends Component {
     this.state = {
       options: [0,0], //[0]: delete after picked, [1]: dishonest mode
       menu: true, // true: expanded menu (half list), false: collapsed menu (full list)
-      list: ['Hike', 'Eat', 'Exercise', 'Sleep', 'Code', 'Cry', 'Run', 'Cook', 'Clean']
+      list: ['Hike', 'Eat', 'Exercise', 'Sleep', 'Code', 'Cry', 'Run', 'Cook', 'Clean'],
+      selected: 0
     };
   }
 
   // ListItem
   onClick(index) {
-    console.log("clicked on " + index);
+    console.log("ListItem: " + index);
   }
 
   delete(index) {
@@ -28,7 +29,7 @@ class App extends Component {
 
   addItem(){
     var item = document.getElementById("listItem").value;
-    console.log(item);
+    console.log("Adding " + item);
     if(item !== ""){
       document.getElementById("listItem").value = "";
       var newList = this.state.list.slice();
@@ -41,14 +42,13 @@ class App extends Component {
   toggleMenu() {
     var newMenu = !this.state.menu;
     this.setState({menu: newMenu});
-    console.log(this.state.menu);
+    console.log(newMenu ? "Showing Menu" : "Hidden Menu");
   }
 
   decide(){
     var index = Math.floor(Math.random() * this.state.list.length);
-    console.log(index);
-    var x = document.getElementById('result');
-    x.innerHTML = this.state.list[index];
+    console.log("Decided on " + index);
+    this.setState({selected: index});
   }
 
   render() {
@@ -69,7 +69,7 @@ class App extends Component {
             </ul>
         </div>
 
-        <Footer decide={() => this.decide()} addItem={() => this.addItem()} toggleMenu={() => this.toggleMenu()} menu={this.state.menu}/>
+        <Footer decide={() => this.decide()} addItem={() => this.addItem()} selected={this.state.list[this.state.selected]} toggleMenu={() => this.toggleMenu()} menu={this.state.menu}/>
 
       </div>
     );

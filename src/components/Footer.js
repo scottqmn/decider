@@ -16,18 +16,16 @@ class Footer extends Component {
     switchContent(val) {
         if (val === 1) {
             this.props.decide();
-            //decide button clicked
         }
         this.setState({contentView: val});
-        console.log(val);
     }
 
     render() {
         return(
             <div id="footer" className={this.props.menu ? "full-menu" : "half-menu"}>
-                <img id="arrow" className={this.props.menu ? "" : "show"} src={arrowIcon} alt="hide" onClick={this.props.toggleMenu}/>
+                <img id="arrow" className={this.props.menu ? "" : "show"} src={arrowIcon} alt="arrow" onClick={this.props.toggleMenu}/>
 
-                {this.props.menu ? <MenuContent addItem={this.props.addItem} menu={this.props.menu} content={this.state.contentView}/> : <div></div>}
+                {this.props.menu ? <MenuContent selected={this.props.selected} addItem={this.props.addItem} menu={this.props.menu} content={this.state.contentView}/> : <div></div>}
 
                 <div id="buttons" className="container">
                     <Button onClick={() => this.switchContent(0)} value={0}/>

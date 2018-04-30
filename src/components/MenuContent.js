@@ -16,7 +16,7 @@ class MenuContent extends Component {
                 return (
                     <div id="decide">
                         <p id="greeting">Today you should</p>
-                        <p id="result">hire me lmao</p>
+                        <p id="result">{this.props.selected}</p>
                     </div>
                 );
             default:
