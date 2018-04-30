@@ -15,6 +15,7 @@ class Footer extends Component {
 
     switchContent(val) {
         if (val === 1) {
+            this.props.decide();
             //decide button clicked
         }
         this.setState({contentView: val});

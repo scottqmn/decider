@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 import './App.css';
 import Header from './components/Header.js';
 import ListItem from './components/ListItem.js';
@@ -27,13 +26,6 @@ class App extends Component {
     this.setState({list: newList});
   }
 
-  // Footer
-  toggleMenu() {
-    var newMenu = !this.state.menu;
-    this.setState({menu: newMenu});
-    console.log(this.state.menu);
-  }
-
   addItem(){
     var item = document.getElementById("listItem").value;
     console.log(item);
@@ -43,6 +35,13 @@ class App extends Component {
       newList.push(item);
       this.setState({list: newList});
     }
+  }
+
+  // Footer
+  toggleMenu() {
+    var newMenu = !this.state.menu;
+    this.setState({menu: newMenu});
+    console.log(this.state.menu);
   }
 
   decide(){
@@ -70,7 +69,7 @@ class App extends Component {
             </ul>
         </div>
 
-        <Footer addItem={() => this.addItem()} toggleMenu={() => this.toggleMenu()} menu={this.state.menu}/>
+        <Footer decide={() => this.decide()} addItem={() => this.addItem()} toggleMenu={() => this.toggleMenu()} menu={this.state.menu}/>
 
       </div>
     );
