@@ -1,0 +1,16 @@
+#header {
+    background-color:#F1F1F1;
+    font-family: 'Lobster', cursive;
+    color: black;
+    box-shadow: 0px 4px 10px hsla(0, 0%, 0%, 0.2);
+  }
+  
+  #header h1 {
+    text-align: center;
+  }
+  
+  #header img {
+    margin-top: 20px;
+    width: 40px;
+    height: 40px;
+  }

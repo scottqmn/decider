@@ -19,11 +19,11 @@
 }
 
 .full-list {
-  max-height: 487px;
+  max-height: 444px;
 }
 
 .half-list {
-  max-height: 317px;
+  max-height: 295px;
 }
 
 .container {
@@ -31,19 +31,12 @@
   justify-content: space-between;
 }
 
-#header {
-
-  background-color:#F1F1F1;
-  font-family: 'Lobster', cursive;
-  color: black;
+/* HEADER */
 
 
-  box-shadow: 0px 4px 10px hsla(0, 0%, 0%, 0.2);
-}
 
-#header h1 {
-  text-align: center;
-}
+
+/* LIST */
 
 .list-item {
   font-size: 20pt;
@@ -54,120 +47,7 @@
   width: 65%;
 }
 
-.popup {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40%;
 
-
-  text-align: center;
-
-  background-color: #F2F2F2;
-
-  z-index: 2;
-  
-  box-shadow: 0px -4px 10px hsla(0, 0%, 0%, 0.2);
-}
-
-#add-item {
-  display: none;
-}
-
-#listItem {
-  font-size: 20pt;
-  text-align: center;
-  padding: 3% 0;
-  width: 60%;
-  margin: 4% 20%;
-}
-
-#myBtn {
-  size: 20%;
-  background-color: #e7e7e7;
-  color: black;
-  font-size: 20px;
-  border-radius: 8px;
-  padding: 2% 5%;
-  width: 60%;
-  margin: 0 20%;
-}
-
-#decide {
-  display: ;
-
-}
-
-.close-x {
-  position: absolute;
-  right: 10px;
-  top: -25px;
-
-  font-size: 20pt;
-}
-
-.hide {
-  width: 60px;
-  height: 30px;
-  opacity: 0.75;
-  margin-top: 1%;
-}
-
-#decide p {
-  padding: 2% 0;
-}
-
-#greeting {
-  font-size: 18pt;
-  margin: 3% 0 1% 0;
-}
-
-#result {
-  font-family: 'Lobster', cursive;
-  font-size: 35pt;
-  margin: 1% 0 1% 0;
-}
-
-#footer {
-  position: absolute;
-  bottom: 0;
-  padding: 3% 0;
-
-  width: 100%;
-
-
-  background-color: #F2F2F2;
-  box-shadow: 0px -4px 10px hsla(0, 0%, 0%, 0.2);
-}
-
-#footer .container {
-  width: 85%;
-  margin: 0 auto;
-}
-
-.footer-btn {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  background-color: #FAFAFA;
-  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
-  border-radius: 100%;
-  width: 75px;
-  height: 75px;
-  z-index: 3;
-}
-
-.footer-btn img {
-  margin-top: 7.5px;
-  width: 60px;
-  height: 60px;
-  opacity: 0.6;
-}
-
-#footer div p {
-  color: grey;
-  font-size: 18pt;
-}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

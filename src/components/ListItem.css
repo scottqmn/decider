@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.list-item {
+    font-size: 20pt;
+    background-color: rgb(199, 199, 199);
+    border-radius: 20px;
+    padding: 3% 5%;
+    margin: 1% 0%;
+    width: 65%;
+  }  

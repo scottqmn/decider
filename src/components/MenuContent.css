@@ -1,0 +1,73 @@
+
+  /* MENU CONTENT */
+  
+  /* SIZE */
+
+  .full-menu {
+    height: 40%;
+  }
+  
+  .half-menu {
+    height: 17.5%;
+  }
+  
+  #menu-content {
+    height: 55%;
+    width: 100%;
+    overflow-y: auto;
+  }
+  
+  .hide-menu {
+    display: none;
+  }
+  
+  /* OPTIONS */
+  
+  #options{
+    display: "";
+  }
+  
+  /* DECIDE */
+  
+  #decide {
+    display: "";
+  }
+  
+  #decide p {
+    padding: 2% 0;
+  }
+  
+  #greeting {
+    font-size: 18pt;
+    margin: 3% 0 1% 0;
+  }
+  
+  #result {
+    font-family: 'Lobster', cursive;
+    font-size: 35pt;
+    margin: 1% 0 1% 0;
+  }
+  
+  /* ADD ITEM */
+  #add-item {
+    display: "";
+  }
+  
+  #listItem {
+    font-size: 20pt;
+    text-align: center;
+    padding: 3% 0;
+    width: 60%;
+    margin: 4% 15%;
+  }
+  
+  #myBtn {
+    size: 20%;
+    background-color: #e7e7e7;
+    color: black;
+    font-size: 20px;
+    border-radius: 8px;
+    padding: 2% 5%;
+    width: 60%;
+    margin: 0 15%;
+  }

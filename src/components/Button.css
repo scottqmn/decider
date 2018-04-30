@@ -1,0 +1,32 @@
+/* BUTTONS */
+  
+  #buttons {
+    position: absolute;
+    bottom: 10px;
+    width: 85%;
+    margin: 0 7.5%;
+  }
+  
+  #buttons div {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: #FAFAFA;
+    box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+    border-radius: 100%;
+    width: 75px;
+    height: 75px;
+    z-index: 3;
+  }
+  
+  #buttons div img {
+    margin-top: 7.5px;
+    width: 60px;
+    height: 60px;
+    opacity: 0.6;
+  }
+  
+  #footer div p {
+    color: grey;
+    font-size: 18pt;
+  }
