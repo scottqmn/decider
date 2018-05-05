@@ -32,7 +32,7 @@ class MenuContent extends Component {
     render() {
         return(
             <div id="menu-content" className={this.props.menu ? "full-menu" : "half-menu"}>
-            {this.props.menu ? this.renderContent() : <div></div>}
+                {this.props.menu ? this.renderContent() : <div></div>}
             </div>
         );
     }

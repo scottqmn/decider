@@ -14,6 +14,9 @@ class Footer extends Component {
     }
 
     switchContent(val) {
+        if (!this.props.menu){
+            this.props.toggleMenu();
+        }
         if (val === 1) {
             this.props.decide();
         }

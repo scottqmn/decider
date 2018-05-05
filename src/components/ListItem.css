@@ -3,12 +3,30 @@
     justify-content: space-between;
 }
 
+button img {
+    width: 30px;
+    height: 30px;
+}
 
-.list-item {
+.cross {
+    transform: rotate(45deg);
+}
+
+
+li {
     font-size: 20pt;
-    background-color: rgb(199, 199, 199);
     border-radius: 20px;
-    padding: 3% 5%;
-    margin: 1% 0%;
-    width: 65%;
-  }  
+    padding: 2% 0%;
+    margin: 2% 5%;
+    width: 90%;
+}
+
+.non-selected {
+    background-color: rgba(200, 200, 200, 0.5);
+
+}  
+
+.selected {
+    background-color: rgba(60, 60, 60, 0.5);
+    color: white;
+}

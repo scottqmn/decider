@@ -10,8 +10,8 @@ class Header extends Component {
         return(
             <div id="header" className="container">
                 <a href={this.props.leftLink}><img id="home" alt="home" src={homeIcon}/></a>
-                <h1>Decider</h1>
-                <a href={this.props.rightLink}><img id="info" alt="info" src={infoIcon}/></a>
+                <h1 onClick={this.props.clear}>Decider</h1>
+                <a onClick={() => alert(this.props.info)}><img id="info" alt="info" src={infoIcon}/></a>
             </div>
         );
     }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Button.css';
 
-import addIcon from '../images/add.png';
+import addIcon from '../images/cross.png';
 import decideIcon from '../images/decide.png';
 import optionsIcon from '../images/options.png';
 

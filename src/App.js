@@ -9,22 +9,36 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      options: [0,0], //[0]: delete after picked, [1]: dishonest mode
-      menu: true, // true: expanded menu (half list), false: collapsed menu (full list)
-      list: ['Hike', 'Eat', 'Exercise', 'Sleep', 'Code', 'Cry', 'Run', 'Cook', 'Clean'],
-      selected: 0
+      options: {
+        autoDelete: false,
+        autoExpand: true,
+        dishonest: false,
+      },
+      menu: false, // true: expanded menu (half list), false: collapsed menu (full list)
+      list: ['Hike', 'Eat', 'Sleep', 'Code', 'Cry', 'Cook', 'Fix max height of list items','Clean'],
+      selected: -1,
+      info: "Hi, I'm Scott.\nThis is my first web app using ReactJS.\nI created this because my girlfriend and I\nhate having to decide on things.\nYes I was being petty."
     };
   }
 
   // ListItem
-  onClick(index) {
-    console.log("ListItem: " + index);
+
+  clearAll() {
+    if (window.confirm('Are you sure you want to clear your list?'))
+      this.setState({list: [], selected: -1});
   }
 
   delete(index) {
     var newList = this.state.list.slice();
     newList.splice(index, 1);
     this.setState({list: newList});
+    if (index === this.state.selected) {
+      this.setState({selected: -1});
+    }
+    else if (index < this.state.selected) {
+      var newSelected = this.state.selected - 1;
+      this.setState({selected: newSelected});
+    }
   }
 
   addItem(){
@@ -55,13 +69,14 @@ class App extends Component {
 
     var listItems = [];
     this.state.list.forEach((item, i) => {
-      listItems.push(<ListItem item={item} key={i} onClick={() => this.onClick(i)} delete={() => this.delete(i)} />)
+      listItems.push(<ListItem item={item} key={i} index={i} selected={this.state.selected} delete={() => this.delete(i)} />)
     });
+    var selected = (this.state.selected >= 0) ? this.state.list[this.state.selected] : "Decide on something";
 
     return (
       <div>
     
-        <Header leftLink={'https://www.scottqmn.com'} rightLink={'https://www.google.com'}/>
+        <Header leftLink={'https://www.scottqmn.com'} clear={() => this.clearAll()} info={this.state.info}/>
 
         <div id="main-list" className={this.state.menu ? "half-list" : "full-list"}>
             <ul>
@@ -69,8 +84,7 @@ class App extends Component {
             </ul>
         </div>
 
-        <Footer decide={() => this.decide()} addItem={() => this.addItem()} selected={this.state.list[this.state.selected]} toggleMenu={() => this.toggleMenu()} menu={this.state.menu}/>
-
+        <Footer decide={() => this.decide()} addItem={() => this.addItem()} selected={selected} toggleMenu={() => this.toggleMenu()} menu={this.state.menu}/>
       </div>
     );
   }
