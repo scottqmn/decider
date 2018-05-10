@@ -1,5 +1,11 @@
 
   /* MENU CONTENT */
+
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
   
   /* SIZE */
 
@@ -25,6 +31,13 @@
   
   #options{
     display: "";
+  }
+
+  #toggles {
+    border: 1px red solid;
+    margin: 0 5%;
+    max-width: 90%;
+    overflow-x: auto;
   }
   
   /* DECIDE */

@@ -1,0 +1,18 @@
+.toggle div{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.toggle-on {
+    background-color: rgba(0, 0, 0, 0.50);
+}
+
+.toggle-off {
+    background-color: purple;
+}
+
+.description {
+    font-size: 3pt;
+    color: black;
+}

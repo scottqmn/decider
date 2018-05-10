@@ -2,14 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import './MenuContent.css';
 
+import OptionToggle from './OptionToggle.js'
+
 class MenuContent extends Component {
+
     renderContent() {
         switch(this.props.content) {
             case 0:
                 return (
-                    <div id="options">
-                        <p>SETTINGS BOI</p>
-                        <p>IOU: settings and options and stuff - scoot</p>
+                    <div id="options" className="">
+                        <div id="toggles" className="container">
+                            <OptionToggle options={this.props.options} type='autoDelete' optionsToggle={this.props.optionsToggle}/>
+                            <OptionToggle options={this.props.options} type='autoExpand' optionsToggle={this.props.optionsToggle}/>
+                            <OptionToggle options={this.props.options} type='dishonest' optionsToggle={this.props.optionsToggle}/>
+                            <OptionToggle options={this.props.options} type='runnerUp' optionsToggle={this.props.optionsToggle}/>
+                            <OptionToggle options={this.props.options} type='weighted' optionsToggle={this.props.optionsToggle}/>
+                        </div>
+
                     </div>
                 );
             case 1:

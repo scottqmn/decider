@@ -28,7 +28,7 @@ class Footer extends Component {
             <div id="footer" className={this.props.menu ? "full-menu" : "half-menu"}>
                 <img id="arrow" className={this.props.menu ? "" : "show"} src={arrowIcon} alt="arrow" onClick={this.props.toggleMenu}/>
 
-                {this.props.menu ? <MenuContent selected={this.props.selected} addItem={this.props.addItem} menu={this.props.menu} content={this.state.contentView}/> : <div></div>}
+                {this.props.menu ? <MenuContent selected={this.props.selected} addItem={this.props.addItem} menu={this.props.menu} content={this.state.contentView} options={this.props.options} optionsToggle={this.props.optionsToggle}/> : <div></div>}
 
                 <div id="buttons" className="container">
                     <Button onClick={() => this.switchContent(0)} value={0}/>

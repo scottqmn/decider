@@ -13,12 +13,18 @@ class App extends Component {
         autoDelete: false,
         autoExpand: true,
         dishonest: false,
+        runnerUp: false,
+        weighted: false
       },
       menu: false, // true: expanded menu (half list), false: collapsed menu (full list)
       list: ['Hike', 'Eat', 'Sleep', 'Code', 'Cry', 'Cook', 'Fix max height of list items','Clean'],
       selected: -1,
       info: "Hi, I'm Scott.\nThis is my first web app using ReactJS.\nI created this because my girlfriend and I\nhate having to decide on things.\nYes I was being petty."
+
     };
+
+
+    this.optionsToggle = this.optionsToggle.bind(this);
   }
 
   // ListItem
@@ -26,6 +32,13 @@ class App extends Component {
   clearAll() {
     if (window.confirm('Are you sure you want to clear your list?'))
       this.setState({list: [], selected: -1});
+  }
+
+  optionsToggle(property) {
+    let newOptions = {...this.state.options};
+    newOptions[property] = !this.state.options[property];
+    this.setState({options: newOptions});
+
   }
 
   delete(index) {
@@ -76,7 +89,7 @@ class App extends Component {
     return (
       <div>
     
-        <Header leftLink={'https://www.scottqmn.com'} clear={() => this.clearAll()} info={this.state.info}/>
+        <Header leftLink={'https://www.scottqmn.com'} test={this.optionsToggle} info={this.state.info}/>
 
         <div id="main-list" className={this.state.menu ? "half-list" : "full-list"}>
             <ul>
@@ -84,7 +97,7 @@ class App extends Component {
             </ul>
         </div>
 
-        <Footer decide={() => this.decide()} addItem={() => this.addItem()} selected={selected} toggleMenu={() => this.toggleMenu()} menu={this.state.menu}/>
+        <Footer decide={() => this.decide()} addItem={() => this.addItem()} selected={selected} toggleMenu={() => this.toggleMenu()} menu={this.state.menu} options={this.state.options} optionsToggle={this.optionsToggle}/>
       </div>
     );
   }
