@@ -14,7 +14,8 @@ class Footer extends Component {
     }
 
     switchContent(val) {
-        if (!this.props.menu){
+        //check autoExpand for decide
+        if ((!this.props.menu && this.props.options.autoExpand) || (!this.props.menu && val !== 1)){
             this.props.toggleMenu();
         }
         if (val === 1) {

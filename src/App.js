@@ -18,7 +18,7 @@ class App extends Component {
       },
       menu: false, // true: expanded menu (half list), false: collapsed menu (full list)
       list: ['Hike', 'Eat', 'Sleep', 'Code', 'Cry', 'Cook', 'Fix max height of list items','Clean'],
-      selected: -1,
+      selected: [-1, -2, -3], // last two indexes optional for runnerUp
       info: "Hi, I'm Scott.\nThis is my first web app using ReactJS.\nI created this because my girlfriend and I\nhate having to decide on things.\nYes I was being petty."
 
     };
@@ -45,13 +45,18 @@ class App extends Component {
     var newList = this.state.list.slice();
     newList.splice(index, 1);
     this.setState({list: newList});
-    if (index === this.state.selected) {
-      this.setState({selected: -1});
-    }
-    else if (index < this.state.selected) {
-      var newSelected = this.state.selected - 1;
-      this.setState({selected: newSelected});
-    }
+
+    var newSelected = this.state.selected.slice();
+    newSelected.forEach(function(pos, i) {
+      if (index === pos) {
+        newSelected[i] = -1;
+      }
+      else if (index < pos) {
+        newSelected[i]--;
+      }
+    });
+    this.setState({selected: newSelected});
+    
   }
 
   addItem(){
@@ -73,18 +78,44 @@ class App extends Component {
   }
 
   decide(){
-    var index = Math.floor(Math.random() * this.state.list.length);
-    console.log("Decided on " + index);
-    this.setState({selected: index});
+
+    var len = this.state.list.length;
+
+    //autoDelete: true
+    if(this.state.options.autoDelete){
+      this.delete(this.state.selected[0]);
+      len--;
+      //TODO: delete backup selections if runnerUp: true
+    }
+
+    var gold = (len > 0) ? Math.floor(Math.random() * len) : -1;
+    var silver = (len > 1) ? Math.floor(Math.random() * len) : -2;
+    var bronze = (len > 2) ? Math.floor(Math.random() * len) : -3;
+    
+    //dishonest: true
+    if(this.state.options.dishonest){
+      console.log("Cheating!");
+      gold = (len > 0) ? 0 : -1;
+    }
+
+    //check for duplicates
+    while(silver === gold || bronze === gold || silver === bronze){
+      silver = (len > 1) ? Math.floor(Math.random() * len) : -2;
+      bronze = (len > 2) ? Math.floor(Math.random() * len) : -3;
+    }
+
+    console.log("Decided on: " + gold + " " + silver + " " + bronze);
+    
+    this.setState({selected: [gold, silver, bronze]});
   }
 
   render() {
 
     var listItems = [];
     this.state.list.forEach((item, i) => {
-      listItems.push(<ListItem item={item} key={i} index={i} selected={this.state.selected} delete={() => this.delete(i)} />)
+      listItems.push(<ListItem item={item} key={i} index={i} selected={this.state.selected} delete={() => this.delete(i)} options={this.state.options} />)
     });
-    var selected = (this.state.selected >= 0) ? this.state.list[this.state.selected] : "Decide on something";
+    var selected = (this.state.selected[0] >= 0) ? this.state.list[this.state.selected[0]] : "Decide on something";
 
     return (
       <div>

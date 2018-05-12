@@ -5,14 +5,25 @@
 }
 
 .toggle-on {
-    background-color: rgba(0, 0, 0, 0.50);
+    background-color: rgb(124, 255, 124);
+}
+
+.toggle-on img{
+    filter: invert(100%);
 }
 
 .toggle-off {
-    background-color: purple;
+    background-color: rgba(0, 0, 0, 0.50);
 }
 
 .description {
-    font-size: 3pt;
+    font-size: 2pt;
     color: black;
+    border: 1px pink solid;
+    max-width: 45px;
+
+
+
+    font-family: arial;
+    font-size: 0%;
 }

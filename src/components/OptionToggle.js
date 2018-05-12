@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './OptionToggle.css';
 
+import AutoDelete from '../images/trash.png';
+import AutoExpand from '../images/autoexpand.png';
+import Dishonest from '../images/dishonest.png'
 import RunnerUp from '../images/stands.png';
 import Weighted from '../images/weighted.png';
 import NA from '../images/options.png';
@@ -16,14 +19,18 @@ class OptionToggle extends Component {
         }).join(' ');
     }
 
-    iconize() {
+    getIcon() {
         switch (this.props.type){
+            case 'autoDelete':
+                return AutoDelete;
+            case 'autoExpand':
+                return AutoExpand;
+            case 'dishonest':
+                return Dishonest;
             case 'runnerUp':
                 return RunnerUp;
-                break;
             case 'weighted':
                 return Weighted;
-                break;
             default:
                 return NA;
         }
@@ -34,11 +41,11 @@ class OptionToggle extends Component {
         var name = this.translate();
 
         return(
-            <div className="toggle">
+            <div className="toggle" title={name}>
                 <div onClick={() => this.props.optionsToggle(this.props.type)} className={this.props.options[this.props.type] ? "toggle-on" : "toggle-off"}>
-                    <img src={this.iconize()}/>
+                    <img src={this.getIcon()} alt={this.props.type}/>
                 </div>
-                <p className="description">{name}</p>
+                {/*TODO: item description, using title tooltips in meantime*/}
             </div>
         );
     }

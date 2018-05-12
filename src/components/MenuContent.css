@@ -30,11 +30,10 @@
   /* OPTIONS */
   
   #options{
-    display: "";
+    margin: 2% 0 0 0;
   }
 
   #toggles {
-    border: 1px red solid;
     margin: 0 5%;
     max-width: 90%;
     overflow-x: auto;
