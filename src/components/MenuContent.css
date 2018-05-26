@@ -34,9 +34,16 @@
   }
 
   #toggles {
+    padding: 5% 0;
     margin: 0 5%;
     max-width: 90%;
     overflow-x: auto;
+  }
+
+  #toggle-message {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 50%;
   }
   
   /* DECIDE */

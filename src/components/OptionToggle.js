@@ -3,7 +3,8 @@ import './OptionToggle.css';
 
 import AutoDelete from '../images/trash.png';
 import AutoExpand from '../images/autoexpand.png';
-import Dishonest from '../images/dishonest.png'
+import Dishonest from '../images/dishonest.png';
+import Night from '../images/night.png';
 import RunnerUp from '../images/stands.png';
 import Weighted from '../images/weighted.png';
 import NA from '../images/options.png';
@@ -27,6 +28,8 @@ class OptionToggle extends Component {
                 return AutoExpand;
             case 'dishonest':
                 return Dishonest;
+            case 'night':
+                return Night;
             case 'runnerUp':
                 return RunnerUp;
             case 'weighted':
@@ -45,7 +48,6 @@ class OptionToggle extends Component {
                 <div onClick={() => this.props.optionsToggle(this.props.type)} className={this.props.options[this.props.type] ? "toggle-on" : "toggle-off"}>
                     <img src={this.getIcon()} alt={this.props.type}/>
                 </div>
-                {/*TODO: item description, using title tooltips in meantime*/}
             </div>
         );
     }

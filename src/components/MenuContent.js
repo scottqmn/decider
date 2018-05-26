@@ -6,19 +6,32 @@ import OptionToggle from './OptionToggle.js'
 
 class MenuContent extends Component {
 
+    //translates camelCase to Regular Form
+    translate(s) {
+        return s.split(/(?=[A-Z])/).map(function(p) {
+            return p.charAt(0).toUpperCase() + p.slice(1);
+        }).join(' ');
+    }
+
+
+
     renderContent() {
         switch(this.props.content) {
             case 0:
+                var listToggles = [];
+                Object.keys(this.props.options).forEach((toggle, i) => {
+                    listToggles.push(<OptionToggle key={i} index={i} options={this.props.options} optionsToggle={this.props.optionsToggle} type={toggle}/>)
+                });
+
                 return (
                     <div id="options" className="">
                         <div id="toggles" className="container">
-                            <OptionToggle options={this.props.options} type='autoDelete' optionsToggle={this.props.optionsToggle}/>
-                            <OptionToggle options={this.props.options} type='autoExpand' optionsToggle={this.props.optionsToggle}/>
-                            <OptionToggle options={this.props.options} type='dishonest' optionsToggle={this.props.optionsToggle}/>
-                            <OptionToggle options={this.props.options} type='runnerUp' optionsToggle={this.props.optionsToggle}/>
-                            <OptionToggle options={this.props.options} type='weighted' optionsToggle={this.props.optionsToggle}/>
+                            {listToggles}
                         </div>
 
+                        <div id="toggle-message">
+                            <p id="toggle-pop-up">todo lmao</p>
+                        </div>
                     </div>
                 );
             case 1:

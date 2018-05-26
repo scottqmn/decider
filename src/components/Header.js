@@ -3,6 +3,7 @@ import './Header.css';
 
 import homeIcon from '../images/home.png';
 import infoIcon from '../images/info.png';
+import Dice from '../images/dice.png';
 
 class Header extends Component {
 
@@ -10,7 +11,7 @@ class Header extends Component {
         return(
             <div id="header" className="container">
                 <a href={this.props.leftLink}><img id="home" alt="home" src={homeIcon}/></a>
-                <h1 onClick={()=>this.props.test('runnerUp')}>Decider</h1>
+                <a onClick={() => this.props.test('runnerUp')}><img id="dice" alt="dice" src={Dice}/></a>
                 <a onClick={() => alert(this.props.info)}><img id="info" alt="info" src={infoIcon}/></a>
             </div>
         );

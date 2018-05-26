@@ -11,14 +11,17 @@ class App extends Component {
     this.state = {
       options: {
         autoDelete: false,
-        autoExpand: true,
+        autoExpand: false,
         dishonest: false,
-        runnerUp: false,
+        night: false,
+        runnerUp: true,
         weighted: false
       },
       menu: false, // true: expanded menu (half list), false: collapsed menu (full list)
       list: ['Hike', 'Eat', 'Sleep', 'Code', 'Cry', 'Cook', 'Fix max height of list items','Clean'],
+      weights: [3, 3, 3, 3, 3, 3, 3, 3], //between 1-5, i.e. item with weight 5 is 5x more likely to be picked over item with weight 1
       selected: [-1, -2, -3], // last two indexes optional for runnerUp
+      foolsGold: -1,
       info: "Hi, I'm Scott.\nThis is my first web app using ReactJS.\nI created this because my girlfriend and I\nhate having to decide on things.\nYes I was being petty."
 
     };
@@ -39,6 +42,19 @@ class App extends Component {
     newOptions[property] = !this.state.options[property];
     this.setState({options: newOptions});
 
+    //check if dishonest was enabled
+    if(property === 'dishonest' && newOptions[property]) {
+      var len = this.state.list.length;
+      var cheat = (len > 0) ? Math.floor(Math.random() * len) : -1;
+
+      var shame = 'Cheater ';
+      for (var i = 0; i < cheat; i++) {
+        shame += '! ';
+      }
+      alert(shame);
+
+      this.setState({foolsGold: cheat});
+    }
   }
 
   delete(index) {
@@ -56,7 +72,10 @@ class App extends Component {
       }
     });
     this.setState({selected: newSelected});
-    
+  }
+
+  edit(index, newItem) {
+    //todo: figure out how to make this usable
   }
 
   addItem(){
@@ -88,15 +107,16 @@ class App extends Component {
       //TODO: delete backup selections if runnerUp: true
     }
 
-    var gold = (len > 0) ? Math.floor(Math.random() * len) : -1;
+    if (!this.state.options.dishonest){
+      var gold = (len > 0) ? Math.floor(Math.random() * len) : -1;
+    }
+    else {
+      var gold = this.state.foolsGold;
+      this.optionsToggle('dishonest');
+    }
+
     var silver = (len > 1) ? Math.floor(Math.random() * len) : -2;
     var bronze = (len > 2) ? Math.floor(Math.random() * len) : -3;
-    
-    //dishonest: true
-    if(this.state.options.dishonest){
-      console.log("Cheating!");
-      gold = (len > 0) ? 0 : -1;
-    }
 
     //check for duplicates
     while(silver === gold || bronze === gold || silver === bronze){
