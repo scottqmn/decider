@@ -9,10 +9,10 @@ class Header extends Component {
 
     render() {
         return(
-            <div id="header" className="container">
-                <a href={this.props.leftLink}><img id="home" alt="home" src={homeIcon}/></a>
-                <a onClick={() => this.props.test('runnerUp')}><img id="dice" alt="dice" src={Dice}/></a>
-                <a onClick={() => alert(this.props.info)}><img id="info" alt="info" src={infoIcon}/></a>
+            <div id="header" className={this.props.options.night ? "container header-night" : "container header-day"}>
+                <a href={this.props.leftLink}><img id="home" className={this.props.options.night ? "img-invert" : ""} alt="home" src={homeIcon}/></a>
+                <a onClick={() => this.props.test('runnerUp')}><img id="dice" className={this.props.options.night ? "img-invert" : ""} alt="dice" src={Dice}/></a>
+                <a onClick={() => alert(this.props.info)}><img id="info" className={this.props.options.night ? "img-invert" : ""} alt="info" src={infoIcon}/></a>
             </div>
         );
     }

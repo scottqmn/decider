@@ -1,5 +1,13 @@
 #root {
+  
+}
+
+.interface-day {
   background-color: #FFFFFF;
+}
+
+.interface-night {
+  background-color: rgb(30, 30, 63);
 }
 
 #main-list {
@@ -22,6 +30,10 @@
 ul {
   list-style-type: none;
   padding: 0;
+}
+
+.img-invert {
+  filter: invert(100%);
 }
 
 

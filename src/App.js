@@ -13,7 +13,7 @@ class App extends Component {
         autoDelete: false,
         autoExpand: false,
         dishonest: false,
-        night: false,
+        night: true,
         runnerUp: true,
         weighted: false
       },
@@ -138,9 +138,9 @@ class App extends Component {
     var selected = (this.state.selected[0] >= 0) ? this.state.list[this.state.selected[0]] : "Decide on something";
 
     return (
-      <div>
+      <div id="interface" className={this.state.options.night ? "interface-night" : "interface-day"}>
     
-        <Header leftLink={'https://www.scottqmn.com'} test={this.optionsToggle} info={this.state.info}/>
+        <Header leftLink={'https://www.scottqmn.com'} options={this.state.options} test={this.optionsToggle} info={this.state.info}/>
 
         <div id="main-list" className={this.state.menu ? "half-list" : "full-list"}>
             <ul>

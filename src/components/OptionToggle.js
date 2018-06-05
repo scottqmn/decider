@@ -46,7 +46,7 @@ class OptionToggle extends Component {
         return(
             <div className="toggle" title={name}>
                 <div onClick={() => this.props.optionsToggle(this.props.type)} className={this.props.options[this.props.type] ? "toggle-on" : "toggle-off"}>
-                    <img src={this.getIcon()} alt={this.props.type}/>
+                    <img className={this.props.options.night ? "img-invert" : ""} src={this.getIcon()} alt={this.props.type}/>
                 </div>
             </div>
         );
