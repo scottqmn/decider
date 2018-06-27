@@ -1,11 +1,46 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* TODO */
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* TODO */
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  /* TODO */
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /* TODO */
+}
+
 .container {
     display: flex;
     justify-content: space-between;
 }
 
+button {
+    background-color: #00000000;
+    border: none;
+    
+    width: 17%;
+    height: 100%;
+    padding: 1% 3%;
+}
+
 button img {
-    width: 30px;
-    height: 30px;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
 }
 
 .cross {
@@ -16,9 +51,10 @@ button img {
 li {
     font-size: 20pt;
     border-radius: 20px;
-    padding: 2% 0%;
+    padding: 3% 0%;
     margin: 2% 5%;
     width: 90%;
+    max-height: 1.5em;
 }
 
 .non-selected {

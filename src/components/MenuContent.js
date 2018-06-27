@@ -20,7 +20,15 @@ class MenuContent extends Component {
             case 0:
                 var listToggles = [];
                 Object.keys(this.props.options).forEach((toggle, i) => {
-                    listToggles.push(<OptionToggle key={i} index={i} options={this.props.options} optionsToggle={this.props.optionsToggle} type={toggle}/>)
+                    listToggles.push(
+                        <OptionToggle 
+                            key={i} 
+                            index={i} 
+                            options={this.props.options} 
+                            optionsToggle={this.props.optionsToggle} 
+                            type={toggle}
+                        />
+                    )
                 });
 
                 return (
@@ -29,9 +37,11 @@ class MenuContent extends Component {
                             {listToggles}
                         </div>
 
-                        <div id="toggle-message">
+                        {/* <div id="toggle-message">
                             <p id="toggle-pop-up">todo lmao</p>
                         </div>
+                         */}
+                         
                     </div>
                 );
             case 1:
@@ -45,7 +55,7 @@ class MenuContent extends Component {
                 return (
                     <div id="add-item">
                         <input type="text" id="listItem" placeholder="Add item"/>
-                        <button id="myBtn" type="submit" onClick={this.props.addItem}>Add</button>
+                        <button id="addBtn" type="submit" onClick={this.props.addItem}>Add</button>
                     </div>
                 );
         }
@@ -53,7 +63,7 @@ class MenuContent extends Component {
 
     render() {
         return(
-            <div id="menu-content" className={this.props.menu ? "full-menu" : "half-menu"}>
+            <div id="menu-content" className={this.props.menu ? "full-content" : "half-content"}>
                 {this.props.menu ? this.renderContent() : <div></div>}
             </div>
         );

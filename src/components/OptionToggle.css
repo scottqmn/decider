@@ -1,5 +1,30 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* TODO */
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* TODO */
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  /* TODO */
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /* TODO */
+}
+
 .toggle{
-    margin: 0 2%;
+    margin: 0 3.5%;
 }
 
 .toggle div{
@@ -32,10 +57,7 @@
 .description {
     font-size: 2pt;
     color: black;
-    border: 1px pink solid;
     max-width: 45px;
-
-
 
     font-family: arial;
     font-size: 0%;

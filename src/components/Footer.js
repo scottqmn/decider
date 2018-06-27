@@ -3,8 +3,6 @@ import './Footer.css';
 import MenuContent from './MenuContent.js';
 import Button from './Button.js';
 
-import arrowIcon from '../images/hide.png';
-
 class Footer extends Component {
     constructor() {
         super();
@@ -13,48 +11,60 @@ class Footer extends Component {
         };
     }
 
-    switchContent(val) {
-        //check autoExpand for decide
-        if ((!this.props.menu && this.props.options.autoExpand) || (!this.props.menu && val !== 1)){
+    switchMenu(val) {
+        //check popUp for decide
+        if (val === 1){
+            this.props.decide();
+            if ((this.props.options.popUp && !this.props.menu) || 
+                (!this.props.options.popUp && this.props.menu))
+                this.props.toggleMenu();
+        }
+        //check if same
+        else if (this.state.contentView === val || !this.props.menu){
             this.props.toggleMenu();
         }
-        if (val === 1) {
-            this.props.decide();
-        }
+
         this.setState({contentView: val});
     }
 
     classPicker() {
-        var name = "";
-
-        if (this.props.options.night){
-            name += "footer-night";
-        }
-        else {
-            name += "footer-day";
-        }
-
-        if (this.props.menu) {
-            name += " full-menu";
-        }
-        else {
-            name += " half-menu";
-        }
-
-        return name;
+        var theme = (this.props.options.night) ? "footer-night" : "footer-day";
+        var size = (this.props.menu) ? " full-menu" : " half-menu";
+        return theme + size;
     }
 
     render() {
         return(
             <div id="footer" className={this.classPicker()}>
-                <img id="arrow" className={this.props.menu ? "" : "show"} src={arrowIcon} alt="arrow" onClick={this.props.toggleMenu}/>
 
-                {this.props.menu ? <MenuContent selected={this.props.selected} addItem={this.props.addItem} menu={this.props.menu} content={this.state.contentView} options={this.props.options} optionsToggle={this.props.optionsToggle}/> : <div></div>}
+                {this.props.menu ? 
+                    <MenuContent 
+                        selected={this.props.selected} 
+                        addItem={this.props.addItem} 
+                        menu={this.props.menu} 
+                        content={this.state.contentView} 
+                        options={this.props.options} 
+                        optionsToggle={this.props.optionsToggle}
+                    /> : 
+                    <div></div>
+                }
 
                 <div id="buttons" className="container">
-                    <Button options={this.props.options} onClick={() => this.switchContent(0)} value={0}/>
-                    <Button options={this.props.options} onClick={() => this.switchContent(1)} value={1}/>
-                    <Button options={this.props.options} onClick={() => this.switchContent(2)} value={2}/>
+                    <Button 
+                        options={this.props.options} 
+                        onClick={() => this.switchMenu(0)} 
+                        value={0}
+                    />
+                    <Button 
+                        options={this.props.options} 
+                        onClick={() => this.switchMenu(1)} 
+                        value={1}
+                    />
+                    <Button 
+                        options={this.props.options} 
+                        onClick={() => this.switchMenu(2)} 
+                        value={2}
+                    />
                 </div>
             </div>
         );

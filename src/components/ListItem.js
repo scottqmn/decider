@@ -20,14 +20,14 @@ class ListItem extends Component {
       }
     }
     else 
-      return (this.props.selected[0] == this.props.index) ? "selected" : "non-selected";
+      return (this.props.selected[0] === this.props.index) ? "selected" : "non-selected";
   }
 
   render() {
     return (
       <li className={this.highlight()}>
         <div className="container">
-          <button type="button" onClick={() => alert("not yet lmao")}>
+          <button type="button" onClick={() => alert("TODO -scott")}>
             <img className="menu" src={Menu} alt="menu"/>
           </button>
           {this.props.item}

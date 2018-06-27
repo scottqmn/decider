@@ -1,3 +1,27 @@
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* TODO */
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* TODO */
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  /* TODO */
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /* TODO */
+}
 
   /* MENU CONTENT */
 
@@ -9,18 +33,18 @@
   
   /* SIZE */
 
-  .full-menu {
+  .full-content {
     height: 40%;
   }
   
-  .half-menu {
+  .half-content {
     height: 17.5%;
   }
   
   #menu-content {
     height: 55%;
     width: 100%;
-    overflow-y: auto;
+    overflow-y: none;
   }
   
   .hide-menu {
@@ -30,7 +54,7 @@
   /* OPTIONS */
   
   #options{
-    margin: 2% 0 0 0;
+    margin: 2%;
   }
 
   #toggles {
@@ -49,22 +73,22 @@
   /* DECIDE */
   
   #decide {
-    display: "";
   }
   
   #decide p {
-    padding: 2% 0;
+    padding: 0;
+    color: black;
   }
   
   #greeting {
-    font-size: 18pt;
-    margin: 3% 0 1% 0;
+    font-size: 16pt;
+    margin: 2% 0;
   }
   
   #result {
     font-family: 'Lobster', cursive;
-    font-size: 35pt;
-    margin: 1% 0 1% 0;
+    font-size: 18pt;
+    margin: 0;
   }
   
   /* ADD ITEM */
@@ -73,20 +97,21 @@
   }
   
   #listItem {
-    font-size: 20pt;
+    font-size: 18pt;
     text-align: center;
-    padding: 3% 0;
+    padding: 2% 0;
     width: 60%;
-    margin: 4% 15%;
+    margin: 2% 15%;
+    border: none;
+    border-radius: 8px;
   }
   
-  #myBtn {
-    size: 20%;
+  #addBtn {
     background-color: #e7e7e7;
     color: black;
-    font-size: 20px;
+    font-size: 16px;
     border-radius: 8px;
-    padding: 2% 5%;
+    padding: 2% 0;
     width: 60%;
-    margin: 0 15%;
+    margin: 0 10%;
   }

@@ -13,11 +13,12 @@ class App extends Component {
         autoDelete: false,
         autoExpand: false,
         dishonest: false,
-        night: true,
+        night: false,
+        popUp: true,
         runnerUp: true,
         weighted: false
       },
-      menu: false, // true: expanded menu (half list), false: collapsed menu (full list)
+      menu: true, // true: expanded menu (half list), false: collapsed menu (full list)
       list: ['Hike', 'Eat', 'Sleep', 'Code', 'Cry', 'Cook', 'Fix max height of list items','Clean'],
       weights: [3, 3, 3, 3, 3, 3, 3, 3], //between 1-5, i.e. item with weight 5 is 5x more likely to be picked over item with weight 1
       selected: [-1, -2, -3], // last two indexes optional for runnerUp
@@ -47,9 +48,9 @@ class App extends Component {
       var len = this.state.list.length;
       var cheat = (len > 0) ? Math.floor(Math.random() * len) : -1;
 
-      var shame = 'Cheater ';
+      var shame = 'Cheater';
       for (var i = 0; i < cheat; i++) {
-        shame += '! ';
+        shame += ' !';
       }
       alert(shame);
 
@@ -107,11 +108,13 @@ class App extends Component {
       //TODO: delete backup selections if runnerUp: true
     }
 
+    var gold;
+
     if (!this.state.options.dishonest){
-      var gold = (len > 0) ? Math.floor(Math.random() * len) : -1;
+      gold = (len > 0) ? Math.floor(Math.random() * len) : -1;
     }
     else {
-      var gold = this.state.foolsGold;
+      gold = this.state.foolsGold;
       this.optionsToggle('dishonest');
     }
 
@@ -133,14 +136,27 @@ class App extends Component {
 
     var listItems = [];
     this.state.list.forEach((item, i) => {
-      listItems.push(<ListItem item={item} key={i} index={i} selected={this.state.selected} delete={() => this.delete(i)} options={this.state.options} />)
+      listItems.push(
+        <ListItem 
+          item={item} 
+          key={i} 
+          index={i} 
+          selected={this.state.selected} 
+          delete={() => this.delete(i)} 
+          options={this.state.options} 
+        />)
     });
     var selected = (this.state.selected[0] >= 0) ? this.state.list[this.state.selected[0]] : "Decide on something";
 
     return (
       <div id="interface" className={this.state.options.night ? "interface-night" : "interface-day"}>
     
-        <Header leftLink={'https://www.scottqmn.com'} options={this.state.options} test={this.optionsToggle} info={this.state.info}/>
+        <Header 
+          leftLink={'https://www.scottqmn.com'} 
+          options={this.state.options} 
+          test={this.optionsToggle} 
+          info={this.state.info}
+        />
 
         <div id="main-list" className={this.state.menu ? "half-list" : "full-list"}>
             <ul>
@@ -148,7 +164,15 @@ class App extends Component {
             </ul>
         </div>
 
-        <Footer decide={() => this.decide()} addItem={() => this.addItem()} selected={selected} toggleMenu={() => this.toggleMenu()} menu={this.state.menu} options={this.state.options} optionsToggle={this.optionsToggle}/>
+        <Footer 
+          decide={() => this.decide()} 
+          addItem={() => this.addItem()} 
+          selected={selected} 
+          toggleMenu={() => this.toggleMenu()} 
+          menu={this.state.menu} 
+          options={this.state.options} 
+          optionsToggle={this.optionsToggle}
+        />
       </div>
     );
   }

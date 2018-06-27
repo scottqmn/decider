@@ -1,10 +1,26 @@
-/* BUTTONS */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  /* TODO */
+} 
 
-#buttons {
-  position: absolute;
-  bottom: 10px;
-  width: 85%;
-  margin: 0 7.5%;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  /* TODO */
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  /* TODO */
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  /* TODO */
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  /* TODO */
 }
 
 .button-all {
@@ -13,15 +29,19 @@
   align-content: center;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   border-radius: 100%;
-  width: 75px;
-  height: 75px;
+
+  margin: 0 2%;
+
+  width: 3em;
+  height: 3em;
+  
   z-index: 3;
 }
 
 #buttons div img {
-  margin-top: 7.5px;
-  width: 60px;
-  height: 60px;
+  margin-top: 0.25em;
+  width: 2.5em;
+  height: 2.5em;
 }
 
 .button-day {
@@ -31,9 +51,4 @@
 
 .button-night {
   background-color: rgb(41, 41, 41);
-}
-
-#footer div p {
-  color: white;
-  font-size: 18pt;
 }
