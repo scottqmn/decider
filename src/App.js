@@ -19,7 +19,7 @@ class App extends Component {
         weighted: false
       },
       menu: true, // true: expanded menu (half list), false: collapsed menu (full list)
-      list: ['Hike', 'Eat', 'Sleep', 'Code', 'Cry', 'Cook', 'Fix max height of list items','Clean'],
+      list: ['Hike', 'Eat', 'Sleep', 'Code', 'Cry', 'Cook', 'Fix max height of list items','Publish'],
       weights: [3, 3, 3, 3, 3, 3, 3, 3], //between 1-5, i.e. item with weight 5 is 5x more likely to be picked over item with weight 1
       selected: [-1, -2, -3], // last two indexes optional for runnerUp
       foolsGold: -1,
@@ -94,7 +94,6 @@ class App extends Component {
   toggleMenu() {
     var newMenu = !this.state.menu;
     this.setState({menu: newMenu});
-    console.log(newMenu ? "Showing Menu" : "Hidden Menu");
   }
 
   decide(){
@@ -126,8 +125,6 @@ class App extends Component {
       silver = (len > 1) ? Math.floor(Math.random() * len) : -2;
       bronze = (len > 2) ? Math.floor(Math.random() * len) : -3;
     }
-
-    console.log("Decided on: " + gold + " " + silver + " " + bronze);
     
     this.setState({selected: [gold, silver, bronze]});
   }

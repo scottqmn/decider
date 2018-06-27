@@ -36,12 +36,6 @@ class MenuContent extends Component {
                         <div id="toggles" className="container">
                             {listToggles}
                         </div>
-
-                        {/* <div id="toggle-message">
-                            <p id="toggle-pop-up">todo lmao</p>
-                        </div>
-                         */}
-                         
                     </div>
                 );
             case 1:

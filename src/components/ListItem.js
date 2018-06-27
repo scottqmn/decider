@@ -30,7 +30,9 @@ class ListItem extends Component {
           <button type="button" onClick={() => alert("TODO -scott")}>
             <img className="menu" src={Menu} alt="menu"/>
           </button>
-          {this.props.item}
+          <div class="item-name">
+            {this.props.item}
+          </div>
           <button type="button" onClick={() => this.props.delete()}>
             <img className="cross" src={Cross} alt="cross"/>
           </button>

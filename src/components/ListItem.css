@@ -57,6 +57,14 @@ li {
     max-height: 1.5em;
 }
 
+.item-name{
+    text-align: center;
+    width: 9em;
+    white-space: nowrap;
+    overflow-x: auto;
+    
+}
+
 .non-selected {
     background-color: rgba(200, 200, 200, 0.5);
 }  
