@@ -14,8 +14,8 @@ class App extends Component {
         autoExpand: false,
         dishonest: false,
         night: false,
-        popUp: true,
-        runnerUp: true,
+        popUp: false,
+        runnerUp: false,
         weighted: false
       },
       menu: true, // true: expanded menu (half list), false: collapsed menu (full list)
