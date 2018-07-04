@@ -1,11 +1,11 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .full-list {
-    max-height: 33em;
+    max-height: 27.55em;
   }
   
   .half-list {
-    max-height: 26em;
+    max-height: 21.55em;
   }
 } 
 
@@ -44,7 +44,7 @@
 
 #main-list {
   position: fixed;
-  top: 3.75em;
+  top: 3.2em;
   overflow-y: auto;
 }
 
