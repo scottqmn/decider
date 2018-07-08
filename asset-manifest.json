@@ -1,8 +1,8 @@
 {
-  "main.css": "static/css/main.dfb16e83.css",
-  "main.css.map": "static/css/main.dfb16e83.css.map",
-  "main.js": "static/js/main.bf331f0d.js",
-  "main.js.map": "static/js/main.bf331f0d.js.map",
+  "main.css": "static/css/main.9391b253.css",
+  "main.css.map": "static/css/main.9391b253.css.map",
+  "main.js": "static/js/main.7c34bd79.js",
+  "main.js.map": "static/js/main.7c34bd79.js.map",
   "static/media/cross.png": "static/media/cross.650add32.png",
   "static/media/decide.png": "static/media/decide.d8d9a48b.png",
   "static/media/dice.png": "static/media/dice.a43366e1.png",
@@ -14,6 +14,6 @@
   "static/media/options.png": "static/media/options.3271a595.png",
   "static/media/popup.png": "static/media/popup.9026ed61.png",
   "static/media/stands.png": "static/media/stands.c5c51d00.png",
-  "static/media/trash.png": "static/media/trash.404a3606.png",
+  "static/media/trash.png": "static/media/trash.6f925b60.png",
   "static/media/weighted.png": "static/media/weighted.52e60a92.png"
 }
