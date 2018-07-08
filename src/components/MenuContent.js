@@ -6,15 +6,6 @@ import OptionToggle from './OptionToggle.js'
 
 class MenuContent extends Component {
 
-    //translates camelCase to Regular Form
-    translate(s) {
-        return s.split(/(?=[A-Z])/).map(function(p) {
-            return p.charAt(0).toUpperCase() + p.slice(1);
-        }).join(' ');
-    }
-
-
-
     renderContent() {
         switch(this.props.content) {
             case 0:
@@ -32,22 +23,20 @@ class MenuContent extends Component {
                 });
 
                 return (
-                    <div id="options" className="">
-                        <div id="toggles" className="container">
-                            {listToggles}
-                        </div>
+                    <div id="toggles" className="menu-content__toggles">
+                        {listToggles}
                     </div>
                 );
             case 1:
                 return (
-                    <div id="decide">
-                        <p id="greeting">Today you should</p>
-                        <p id="result">{this.props.selected}</p>
+                    <div id="decide" className="menu-content__decide">
+                        <p id="greeting" className="menu-content__decide__greeting">Today you should</p>
+                        <p id="result" className="menu-content__decide__result">{this.props.selected}</p>
                     </div>
                 );
             default:
                 return (
-                    <div id="add-item">
+                    <div id="add-item" className="menu-content__add-item">
                         <input type="text" id="listItem" placeholder="Add item"/>
                         <button id="addBtn" type="submit" onClick={this.props.addItem}>Add</button>
                     </div>
@@ -57,7 +46,7 @@ class MenuContent extends Component {
 
     render() {
         return(
-            <div id="menu-content" className={this.props.menu ? "full-content" : "half-content"}>
+            <div id="menu-content" className="menu-content">
                 {this.props.menu ? this.renderContent() : <div></div>}
             </div>
         );

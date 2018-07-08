@@ -11,14 +11,13 @@ class App extends Component {
     this.state = {
       options: {
         autoDelete: false,
-        autoExpand: false,
         dishonest: false,
         night: false,
-        popUp: false,
+        popUp: true,
         runnerUp: false,
         weighted: false
       },
-      menu: true, // true: expanded menu (half list), false: collapsed menu (full list)
+      menu: false, // true: expanded menu (half list), false: collapsed menu (full list)
       list: ['Hike', 'Eat', 'Sleep', 'Code', 'Cry', 'Cook', 'Fix max height of list items','Publish'],
       weights: [3, 3, 3, 3, 3, 3, 3, 3], //between 1-5, i.e. item with weight 5 is 5x more likely to be picked over item with weight 1
       selected: [-1, -2, -3], // last two indexes optional for runnerUp
@@ -26,7 +25,6 @@ class App extends Component {
       info: "Hi, I'm Scott.\nThis is my first web app using ReactJS.\nI created this because my girlfriend and I hate having to decide on things.\nYes I was being petty."
 
     };
-
 
     this.optionsToggle = this.optionsToggle.bind(this);
   }
@@ -129,6 +127,25 @@ class App extends Component {
     this.setState({selected: [gold, silver, bronze]});
   }
 
+
+  interfaceClassPicker() {
+    var result = "interface";
+    if (this.state.options.night)
+      result += " interface--night";
+    else
+      result += " interface--day";
+    return result;
+  }
+
+  footerClassPicker() {
+    var result = "footer-container";
+    if (this.state.menu)
+      result += " footer-container--full";
+    else
+      result += " footer-container--half";
+    return result;
+  }
+
   render() {
 
     var listItems = [];
@@ -146,30 +163,34 @@ class App extends Component {
     var selected = (this.state.selected[0] >= 0) ? this.state.list[this.state.selected[0]] : "Decide on something";
 
     return (
-      <div id="interface" className={this.state.options.night ? "interface-night" : "interface-day"}>
-    
-        <Header 
-          leftLink={'https://www.scottqmn.com'} 
-          options={this.state.options} 
-          test={this.optionsToggle} 
-          info={this.state.info}
-        />
+      <div id="interface" className={this.interfaceClassPicker()}>
+        <div className="header-container">
+          <Header 
+            leftLink={'https://www.scottqmn.com'} 
+            options={this.state.options} 
+            test={this.optionsToggle} 
+            info={this.state.info}
+          />
+        </div>
 
-        <div id="main-list" className={this.state.menu ? "half-list" : "full-list"}>
+        <div id="main-list" className="main-list">
             <ul>
                 {listItems}
             </ul>
         </div>
 
-        <Footer 
-          decide={() => this.decide()} 
-          addItem={() => this.addItem()} 
-          selected={selected} 
-          toggleMenu={() => this.toggleMenu()} 
-          menu={this.state.menu} 
-          options={this.state.options} 
-          optionsToggle={this.optionsToggle}
-        />
+        <div className={this.footerClassPicker()}>
+          <Footer 
+            decide={() => this.decide()} 
+            addItem={() => this.addItem()} 
+            selected={selected} 
+            toggleMenu={() => this.toggleMenu()} 
+            menu={this.state.menu} 
+            options={this.state.options} 
+            optionsToggle={this.optionsToggle}
+          />
+        </div>
+        
       </div>
     );
   }

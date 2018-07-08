@@ -6,9 +6,9 @@ import decideIcon from '../images/decide.png';
 import optionsIcon from '../images/options.png';
 
 class Button extends Component {
-    classPicker() {
-        var name = (this.props.options.night) ? "button-night" : "button-day";
-        name += " button-all";
+    buttonClassPicker() {
+        var name = "button";
+        name += (this.props.options.night) ? " button--night" : " button--day";
         return name;
     }
 
@@ -18,7 +18,7 @@ class Button extends Component {
 
         return(
             <div 
-                className={this.classPicker()} 
+                className={this.buttonClassPicker()} 
                 onClick={this.props.onClick}>
                 <img 
                     className={this.props.options.night ? "img-invert" : ""} 

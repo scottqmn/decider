@@ -23,34 +23,32 @@
   /* TODO */
 }
 
-.toggle{
-    margin: 0 3.5%;
-}
-
-.toggle div{
-    height: 60px;
-    width: 60px;
+.toggle {
+    margin: 0 4%;
+    height: 10vh;
+    width: auto;
     border-radius: 50%;
     align-items: center;
 }
 
-.toggle div img{
-    width: 60px;
+.toggle img {
+    width: 10vh;
     height: auto;
     display: block;
     margin: auto;
     opacity: 0.75;
 }
 
-.toggle-on {
+.toggle--on {
     background-color: rgb(233, 113, 0);
 }
 
-.toggle-on img{
+.toggle--on img{
     filter: invert(100%);
 }
 
-.toggle-off {
+
+.toggle--off {
     background-color: rgba(0, 0, 0, 0.25);
 }
 

@@ -1,6 +1,7 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  
+  /* TODO */
+
 } 
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -25,78 +26,52 @@
 
   /* MENU CONTENT */
 
-
-  .container {
-    display: flex;
-    justify-content: space-between;
-  }
   
   /* SIZE */
 
-  .full-content {
-    height: 40%;
-  }
   
-  .half-content {
-    height: 17.5%;
-  }
-  
-  #menu-content {
-    height: 55%;
+  .menu-content {
+    height: 20vh;
     width: 100%;
+    padding-top: 3vh;
     overflow-y: none;
   }
-  
-  .hide-menu {
-    display: none;
-  }
+
   
   /* OPTIONS */
-  
-  #options{
-    margin: 2%;
-  }
 
-  #toggles {
-    padding: 5% 0;
-    margin: 0 5%;
-    max-width: 90%;
+  .menu-content__toggles {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-content: center;
+    
+    margin: 5% 0;
+    max-width: 100%;
     overflow-x: auto;
-  }
-
-  #toggle-message {
-    width: 50%;
-    margin: 0 auto;
-    font-size: 50%;
   }
   
   /* DECIDE */
   
-  #decide {
-  }
-  
-  #decide p {
+  .menu-content__decide p {
     padding: 0;
     color: black;
   }
   
-  #greeting {
+  .menu-content__decide__greeting {
     font-size: 16pt;
     margin: 2% 0;
   }
   
-  #result {
+  .menu-content__decide__result {
     font-family: 'Lobster', cursive;
     font-size: 18pt;
     margin: 0;
   }
   
   /* ADD ITEM */
-  #add-item {
-    display: "";
-  }
   
-  #listItem {
+  .menu-content__add-item input {
     font-size: 18pt;
     text-align: center;
     padding: 2% 0;
@@ -106,7 +81,7 @@
     border-radius: 8px;
   }
   
-  #addBtn {
+  .menu-content__add-item button {
     background-color: #e7e7e7;
     color: black;
     font-size: 16px;

@@ -7,35 +7,46 @@ import Cross from '../images/cross.png';
 class ListItem extends Component {
 
   highlight() {
+    var resultClass = "list-item";
     if(this.props.options.runnerUp){
       switch(this.props.index) {
         case this.props.selected[0]:
-          return "gold";
+          resultClass += " list-item--gold";
+          break;
         case this.props.selected[1]:
-          return "silver";
+          resultClass += " list-item--silver";
+          break;
         case this.props.selected[2]:
-          return "bronze";
+          resultClass += " list-item--bronze";
+          break;
         default:
-          return "non-selected";
+          resultClass += " list-item--non-selected";
+          break;
       }
     }
-    else 
-      return (this.props.selected[0] === this.props.index) ? "selected" : "non-selected";
+    else {
+      if (this.props.selected[0] === this.props.index)
+        resultClass += " list-item--selected";
+      else
+        resultClass += " list-item--non-selected";
+    }
+
+    return resultClass;
   }
 
   render() {
     return (
-      <li className={this.highlight()}>
-        <div className="container">
-          <button type="button" onClick={() => alert("TODO -scott")}>
-            <img className="menu" src={Menu} alt="menu"/>
-          </button>
-          <div className="item-name">
+      <li>
+        <div className={this.highlight()}>
+          <div className="list-item__button" onClick={() => alert("TODO -scott")}>
+            <img className="item__button--menu" src={Menu} alt="menu"/>
+          </div>
+          <div className="list-item__name">
             {this.props.item}
           </div>
-          <button type="button" onClick={() => this.props.delete()}>
-            <img className="cross" src={Cross} alt="cross"/>
-          </button>
+          <div className="list-item__button" onClick={() => this.props.delete()}>
+            <img className="item__button--cross" src={Cross} alt="cross"/>
+          </div>
         </div>
       </li>
     );

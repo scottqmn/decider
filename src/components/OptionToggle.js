@@ -39,18 +39,21 @@ class OptionToggle extends Component {
         }
     }
     
-    toggleClass() {
-        return (this.props.options[this.props.type]) ? "toggle-on" : "toggle-off";
+    toggleClassPicker() {
+        var result = "toggle";
+        if (this.props.options[this.props.type])
+            result += " toggle--on";
+        else
+            result += " toggle--off";
+        return result;
     }
 
     render() {
         var name = this.translate();
 
         return(
-            <div className="toggle" title={name}>
-                <div onClick={() => this.props.optionsToggle(this.props.type)} className={this.toggleClass()}>
-                    <img className={this.props.options.night ? "img-invert" : ""} src={this.getIcon()} alt={this.props.type}/>
-                </div>
+            <div title={name} onClick={() => this.props.optionsToggle(this.props.type)} className={this.toggleClassPicker()}>
+                <img className={this.props.options.night ? "img-invert" : ""} src={this.getIcon()} alt={this.props.type}/>
             </div>
         );
     }

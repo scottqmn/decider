@@ -27,15 +27,15 @@ class Footer extends Component {
         this.setState({contentView: val});
     }
 
-    classPicker() {
-        var theme = (this.props.options.night) ? "footer-night" : "footer-day";
-        var size = (this.props.menu) ? " full-menu" : " half-menu";
-        return theme + size;
+    footerClassPicker() {
+        var result = "footer";
+        result += (this.props.options.night) ? " footer---night" : " footer--day";
+        return result;
     }
 
     render() {
         return(
-            <div id="footer" className={this.classPicker()}>
+            <div id="footer" className={this.footerClassPicker()}>
 
                 {this.props.menu ? 
                     <MenuContent 
@@ -49,7 +49,7 @@ class Footer extends Component {
                     <div></div>
                 }
 
-                <div id="buttons" className="container">
+                <div id="buttons" className="button-container">
                     <Button 
                         options={this.props.options} 
                         onClick={() => this.switchMenu(0)} 

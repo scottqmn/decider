@@ -1,12 +1,5 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-  .full-list {
-    max-height: 27em;
-  }
-  
-  .half-list {
-    max-height: 21em;
-  }
 } 
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -29,28 +22,45 @@
   /* TODO */
 }
 
-
-#root {
-  
+.interface {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.interface-day {
+.interface--day {
   background-color: #FFFFFF;
 }
 
-.interface-night {
+.interface--night {
   background-color: rgb(30, 30, 63);
 }
 
-#main-list {
-  position: fixed;
-  top: 3.8em;
+
+.main-list {
+  flex: 1;
   overflow-y: auto;
+  z-index: 1;
 }
 
-.container {
+.header-container {
+  height: 10vh;
+  z-index: 2;
+}
+
+.footer-container {
+  z-index: 2;
+  
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+}
+
+.footer-container--full {
+  height: 35vh;
+}
+
+.footer-container--half {
+  height: 15vh
 }
 
 ul {

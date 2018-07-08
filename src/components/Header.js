@@ -7,25 +7,30 @@ import Dice from '../images/dice.png';
 
 class Header extends Component {
 
-    headerClass() {
-        return (this.props.options.night) ? "header-night container" : "header-day container";
+    headerClassPicker() {
+        var result = "header";
+        if (this.props.options.night)
+            result += " header--night";
+        else
+            result += " header--day";
+        return result;
     }
 
-    imgClass() {
+    imgClassPicker() {
         return (this.props.options.night) ? "img-invert" : "";
     }
 
     render() {
         return(
-            <div id="header" className={this.headerClass()}>
-                <a href={this.props.leftLink}>  
-                    <img id="home" className={this.imgClass()} alt="home" src={homeIcon}/>
+            <div id="header" className={this.headerClassPicker()}>
+                <a className="header__icon" href={this.props.leftLink}>  
+                    <img id="home" className={this.imgClassPicker()} alt="home" src={homeIcon}/>
                 </a>
-                <a onClick={() => this.props.test('runnerUp')}>
-                    <img id="dice" className={this.imgClass()} alt="dice" src={Dice}/>
+                <a className="header__icon" onClick={() => this.props.test('runnerUp')}>
+                    <img id="dice" className={this.imgClassPicker()} alt="dice" src={Dice}/>
                 </a>
-                <a onClick={() => alert(this.props.info)}>
-                    <img id="info" className={this.imgClass()} alt="info" src={infoIcon}/>
+                <a className="header__icon" onClick={() => alert(this.props.info)}>
+                    <img id="info" className={this.imgClassPicker()} alt="info" src={infoIcon}/>
                 </a>
             </div>
         );

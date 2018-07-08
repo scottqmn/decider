@@ -23,13 +23,13 @@
   /* TODO */
 }
 
-.button-all {
+.button {
   display: flex;
   justify-content: center;
   align-content: center;
+
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   border-radius: 100%;
-
   margin: 0 2%;
 
   width: 3em;
@@ -38,17 +38,17 @@
   z-index: 3;
 }
 
-#buttons div img {
+.button img {
   margin-top: 0.25em;
   width: 2.5em;
   height: 2.5em;
 }
 
-.button-day {
+.button--day {
   background-color: #FAFAFA;
   opacity: 0.6;
 }
 
-.button-night {
+.button--night {
   background-color: rgb(41, 41, 41);
 }

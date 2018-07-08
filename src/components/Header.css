@@ -23,34 +23,31 @@
   /* TODO */
 }
 
-#header {
-  box-shadow: 0px 4px 10px hsla(0, 0%, 0%, 0.2);
-
+.header {
   display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
   justify-content: space-between;
 
-  padding: 1% 0;
-  position: fixed;
-  top: 0;
+  height: 100%;
+  box-shadow: 0px 4px 10px hsla(0, 0%, 0%, 0.2);
 }
 
-.header-day {
+.header--day {
   background-color:#F1F1F1;
 }
 
-.header-night {
+.header--night {
   background-color: rgb(30, 30, 50);
 }
 
-
-#header > a {
+.header__icon {
   text-align: center;
   width: 15%;
-  padding: 1% 4% 0 4%;
-  
+  padding: 0 4%;
 }
 
-#header a img {
+.header__icon img{
   width: 80%;
   height: auto;
 }
