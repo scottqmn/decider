@@ -4,13 +4,10 @@ import './Button.css';
 import addIcon from '../images/cross.png';
 import decideIcon from '../images/decide.png';
 import optionsIcon from '../images/options.png';
+import {classPicker, invert} from '../Helper.js';
 
 class Button extends Component {
-    buttonClassPicker() {
-        var name = "button";
-        name += (this.props.options.night) ? " button--night" : " button--day";
-        return name;
-    }
+    
 
     render() {
         var icons = [optionsIcon, decideIcon, addIcon];
@@ -18,10 +15,10 @@ class Button extends Component {
 
         return(
             <div 
-                className={this.buttonClassPicker()} 
+                className={classPicker("button", "night", "day", this.props.options.night)} 
                 onClick={this.props.onClick}>
                 <img 
-                    className={this.props.options.night ? "img-invert" : ""} 
+                    className={invert(this.props.options.night)} 
                     src={icons[this.props.value]} 
                     alt={alts[this.props.value]}
                 />

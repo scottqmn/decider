@@ -4,6 +4,8 @@ import './App.css';
 import Header from './components/Header.js';
 import ListItem from './components/ListItem.js';
 import Footer from './components/Footer.js';
+import { classPicker } from './Helper.js';
+
 
 class App extends Component {
   constructor() {
@@ -18,8 +20,8 @@ class App extends Component {
         weighted: false
       },
       menu: false, // true: expanded menu (half list), false: collapsed menu (full list)
-      list: ['Hike', 'Eat', 'Sleep', 'Code', 'Cry', 'Cook', 'Fix max height of list items','Publish'],
-      weights: [3, 3, 3, 3, 3, 3, 3, 3], //between 1-5, i.e. item with weight 5 is 5x more likely to be picked over item with weight 1
+      list: ['Hike', 'Sleep', 'Code', 'Read', 'Cook', 'Write'],
+      weights: [3, 3, 3, 3, 3, 3], //between 1-5, i.e. item with weight 5 is 5x more likely to be picked over item with weight 1
       selected: [-1, -2, -3], // last two indexes optional for runnerUp
       foolsGold: -1,
       info: "Hi, I'm Scott.\nThis is my first web app using ReactJS.\nI created this because my girlfriend and I hate having to decide on things.\nYes I was being petty."
@@ -29,31 +31,9 @@ class App extends Component {
     this.optionsToggle = this.optionsToggle.bind(this);
   }
 
-  // ListItem
-
   clearAll() {
     if (window.confirm('Are you sure you want to clear your list?'))
       this.setState({list: [], selected: -1});
-  }
-
-  optionsToggle(property) {
-    let newOptions = {...this.state.options};
-    newOptions[property] = !this.state.options[property];
-    this.setState({options: newOptions});
-
-    //check if dishonest was enabled
-    if(property === 'dishonest' && newOptions[property]) {
-      var len = this.state.list.length;
-      var cheat = (len > 0) ? Math.floor(Math.random() * len) : -1;
-
-      var shame = 'Cheater';
-      for (var i = 0; i < cheat; i++) {
-        shame += ' !';
-      }
-      alert(shame);
-
-      this.setState({foolsGold: cheat});
-    }
   }
 
   delete(index) {
@@ -88,18 +68,11 @@ class App extends Component {
     }
   }
 
-  // Footer
-  toggleMenu() {
-    var newMenu = !this.state.menu;
-    this.setState({menu: newMenu});
-  }
-
   decide(){
-
     var len = this.state.list.length;
 
     //autoDelete: true
-    if(this.state.options.autoDelete){
+    if(this.state.options.autoDelete && this.state.selected[0] >= 0){
       this.delete(this.state.selected[0]);
       len--;
       //TODO: delete backup selections if runnerUp: true
@@ -107,44 +80,57 @@ class App extends Component {
 
     var gold;
 
-    if (!this.state.options.dishonest){
-      gold = (len > 0) ? Math.floor(Math.random() * len) : -1;
-    }
-    else {
+    if (this.state.options.dishonest){
       gold = this.state.foolsGold;
       this.optionsToggle('dishonest');
     }
+    else {
+      gold = (len > 0) ? Math.floor(Math.random() * len) : -1;
+    }
 
-    var silver = (len > 1) ? Math.floor(Math.random() * len) : -2;
-    var bronze = (len > 2) ? Math.floor(Math.random() * len) : -3;
+    var silver = this.pickRandom(len, 1, -2);
+    var bronze = this.pickRandom(len, 2, -3);
 
     //check for duplicates
     while(silver === gold || bronze === gold || silver === bronze){
-      silver = (len > 1) ? Math.floor(Math.random() * len) : -2;
-      bronze = (len > 2) ? Math.floor(Math.random() * len) : -3;
+      silver = this.pickRandom(len, 1, -2);
+      bronze = this.pickRandom(len, 2, -3);
     }
     
     this.setState({selected: [gold, silver, bronze]});
   }
 
-
-  interfaceClassPicker() {
-    var result = "interface";
-    if (this.state.options.night)
-      result += " interface--night";
-    else
-      result += " interface--day";
-    return result;
+  pickRandom(len, min, def) {
+    return (len > min) ? Math.floor(Math.random() * len) : def;
   }
 
-  footerClassPicker() {
-    var result = "footer-container";
-    if (this.state.menu)
-      result += " footer-container--full";
-    else
-      result += " footer-container--half";
-    return result;
+  // Footer
+  toggleMenu() {
+    var newMenu = !this.state.menu;
+    this.setState({menu: newMenu});
   }
+
+
+  optionsToggle(property) {
+    let newOptions = {...this.state.options};
+    newOptions[property] = !newOptions[property];
+    this.setState({options: newOptions});
+
+    //check if dishonest was enabled
+    if(property === 'dishonest' && newOptions[property]) {
+      var len = this.state.list.length;
+      var cheat = (len > 0) ? Math.floor(Math.random() * len) : -1;
+
+      var shame = 'Cheater';
+      for (var i = 0; i < cheat; i++) {
+        shame += '!';
+      }
+      alert(shame);
+
+      this.setState({foolsGold: cheat});
+    }
+  }
+
 
   render() {
 
@@ -160,10 +146,12 @@ class App extends Component {
           options={this.state.options} 
         />)
     });
+
     var selected = (this.state.selected[0] >= 0) ? this.state.list[this.state.selected[0]] : "Decide on something";
 
+
     return (
-      <div id="interface" className={this.interfaceClassPicker()}>
+      <div id="interface" className={classPicker("interface", "night", "day", this.state.options.night)}>
         <div className="header-container">
           <Header 
             leftLink={'https://www.scottqmn.com'} 
@@ -179,7 +167,7 @@ class App extends Component {
             </ul>
         </div>
 
-        <div className={this.footerClassPicker()}>
+        <div className={classPicker("footer-container", "full", "half", this.state.menu)}>
           <Footer 
             decide={() => this.decide()} 
             addItem={() => this.addItem()} 

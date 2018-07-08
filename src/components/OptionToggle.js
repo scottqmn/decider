@@ -8,17 +8,10 @@ import PopUp from '../images/popup.png';
 import RunnerUp from '../images/stands.png';
 import Weighted from '../images/weighted.png';
 import NA from '../images/options.png';
+import {classPicker, invert, translate} from '../Helper.js';
 
 
 class OptionToggle extends Component {
-
-    //translates camelCase to Regular Form
-    translate() {
-        var s = this.props.type;
-        return s.split(/(?=[A-Z])/).map(function(p) {
-            return p.charAt(0).toUpperCase() + p.slice(1);
-        }).join(' ');
-    }
 
     getIcon() {
         switch (this.props.type){
@@ -38,23 +31,18 @@ class OptionToggle extends Component {
                 return NA;
         }
     }
-    
-    toggleClassPicker() {
-        var result = "toggle";
-        if (this.props.options[this.props.type])
-            result += " toggle--on";
-        else
-            result += " toggle--off";
-        return result;
-    }
 
     render() {
-        var name = this.translate();
+        var name = translate(this.props.type);
 
         return(
-            <div title={name} onClick={() => this.props.optionsToggle(this.props.type)} className={this.toggleClassPicker()}>
-                <img className={this.props.options.night ? "img-invert" : ""} src={this.getIcon()} alt={this.props.type}/>
+            <div className="toggle-container">
+                <div title={name} onClick={() => this.props.optionsToggle(this.props.type)} className={classPicker("toggle", "on", "off", this.props.options[this.props.type])}>
+                    <img className={invert(this.props.options.night)} src={this.getIcon()} alt={this.props.type}/>
+                </div>
+                <p className={classPicker("toggle-name", "night", "day", this.props.options.night)}>{name}</p>
             </div>
+            
         );
     }
 }

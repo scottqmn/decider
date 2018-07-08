@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Footer.css';
 import MenuContent from './MenuContent.js';
 import Button from './Button.js';
+import {classPicker} from '../Helper.js';
 
 class Footer extends Component {
     constructor() {
@@ -27,15 +28,9 @@ class Footer extends Component {
         this.setState({contentView: val});
     }
 
-    footerClassPicker() {
-        var result = "footer";
-        result += (this.props.options.night) ? " footer---night" : " footer--day";
-        return result;
-    }
-
     render() {
         return(
-            <div id="footer" className={this.footerClassPicker()}>
+            <div id="footer" className={classPicker("footer", "night", "day", this.props.options.night)}>
 
                 {this.props.menu ? 
                     <MenuContent 

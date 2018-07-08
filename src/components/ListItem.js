@@ -3,6 +3,7 @@ import './ListItem.css';
 
 import Menu from '../images/menu.png';
 import Cross from '../images/cross.png';
+import {classPicker} from '../Helper.js';
 
 class ListItem extends Component {
 
@@ -25,10 +26,7 @@ class ListItem extends Component {
       }
     }
     else {
-      if (this.props.selected[0] === this.props.index)
-        resultClass += " list-item--selected";
-      else
-        resultClass += " list-item--non-selected";
+      resultClass = classPicker("list-item", "selected", "non-selected", (this.props.selected[0] === this.props.index));
     }
 
     return resultClass;
