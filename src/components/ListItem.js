@@ -7,6 +7,13 @@ import {classPicker} from '../Helper.js';
 
 class ListItem extends Component {
 
+  constructor() {
+    super();
+    this.state = {
+      centerContent: true
+    };
+  }
+
   highlight() {
     var resultClass = "list-item";
     if(this.props.options.runnerUp){
@@ -32,16 +39,42 @@ class ListItem extends Component {
     return resultClass;
   }
 
+  toggleWeight() {
+    if (!this.props.options.weighted)
+      alert("Enable weighted option first");
+    else
+      this.setState({centerContent: !this.state.centerContent});
+  }
+
+  renderContent() {
+    if (this.state.centerContent) {
+      return (
+        <div className="list-item__name" onClick={() => this.props.rename()}>
+          {this.props.item}
+        </div>
+      );
+    }
+    else {
+      return (
+        <div className="list-item__weight">
+          <p>
+            <span onClick={() => this.props.editWeight(false)}>  -  </span>
+            {this.props.weight}
+            <span onClick={() => this.props.editWeight(true)}>  +  </span>
+          </p>
+        </div>
+      )
+    }
+  }
+
   render() {
     return (
       <li>
         <div className={this.highlight()}>
-          <div className="list-item__button" onClick={() => alert("TODO -scott")}>
+          <div className="list-item__button" onClick={() => this.toggleWeight()}>
             <img className="item__button--menu" src={Menu} alt="menu"/>
           </div>
-          <div className="list-item__name">
-            {this.props.item}
-          </div>
+          {this.renderContent()}
           <div className="list-item__button" onClick={() => this.props.delete()}>
             <img className="item__button--cross" src={Cross} alt="cross"/>
           </div>

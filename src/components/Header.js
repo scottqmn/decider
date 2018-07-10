@@ -14,7 +14,7 @@ class Header extends Component {
                 <a className="header__icon" href={this.props.leftLink}>  
                     <img id="home" className={invert(this.props.options.night)} alt="home" src={homeIcon}/>
                 </a>
-                <a className="header__icon" onClick={() => this.props.test('runnerUp')}>
+                <a className="header__icon" onClick={null}>
                     <img id="dice" className={invert(this.props.options.night)} alt="dice" src={Dice}/>
                 </a>
                 <a className="header__icon" onClick={() => alert(this.props.info)}>

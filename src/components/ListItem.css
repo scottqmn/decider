@@ -36,7 +36,8 @@
     justify-content: space-between;
 }
 
-.list-item__name{
+.list-item__name,
+.list-item__weight{
     font-size: 1.75em;
     text-align: center;
     width: 9em;
@@ -55,6 +56,7 @@
     height: auto;
     vertical-align: middle;
 }
+
 
 .item__button--cross {
     transform: rotate(45deg);

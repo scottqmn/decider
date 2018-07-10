@@ -41,6 +41,10 @@ class App extends Component {
     newList.splice(index, 1);
     this.setState({list: newList});
 
+    var newWeights = this.state.weights.slice();
+    newWeights.splice(index, 1);
+    this.setState({weights: newWeights});
+
     var newSelected = this.state.selected.slice();
     newSelected.forEach(function(pos, i) {
       if (index === pos) {
@@ -53,8 +57,23 @@ class App extends Component {
     this.setState({selected: newSelected});
   }
 
-  edit(index, newItem) {
+  rename(index) {
     //todo: figure out how to make this usable
+    var newName = prompt("Rename item?");
+    if (newName !== null && newName !== "") {
+      var newList = this.state.list.slice();
+      newList[index] = newName;
+      this.setState({list: newList});
+    }
+  }
+
+  editWeight(index, change) {
+    var newWeights = this.state.weights.slice();
+    if (change && newWeights[index] < 5)
+      newWeights[index]++;
+    else if (!change && newWeights[index] > 1)
+      newWeights[index]--;
+    this.setState({weights: newWeights});
   }
 
   addItem(){
@@ -118,17 +137,21 @@ class App extends Component {
 
     //check if dishonest was enabled
     if(property === 'dishonest' && newOptions[property]) {
-      var len = this.state.list.length;
-      var cheat = (len > 0) ? Math.floor(Math.random() * len) : -1;
-
-      var shame = 'Cheater';
-      for (var i = 0; i < cheat; i++) {
-        shame += '!';
-      }
-      alert(shame);
-
-      this.setState({foolsGold: cheat});
+      this.dishonest();
     }
+  }
+
+  dishonest() {
+    var len = this.state.list.length;
+    var cheat = (len > 0) ? Math.floor(Math.random() * len) : -1;
+
+    var shame = 'Cheater';
+    for (var i = 0; i < cheat; i++) {
+      shame += '!';
+    }
+    alert(shame);
+
+    this.setState({foolsGold: cheat});
   }
 
 
@@ -140,9 +163,12 @@ class App extends Component {
         <ListItem 
           item={item} 
           key={i} 
-          index={i} 
+          index={i}
+          weight={this.state.weights[i]} 
           selected={this.state.selected} 
+          rename={() => this.rename(i)}
           delete={() => this.delete(i)} 
+          editWeight={(change) => this.editWeight(i, change)}
           options={this.state.options} 
         />)
     });
