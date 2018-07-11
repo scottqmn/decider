@@ -1,0 +1,19 @@
+{
+    "name": "Decider",
+    "short_name": "Decider",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png?v=jwLqay4mAe",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-256x256.png?v=jwLqay4mAe",
+            "sizes": "256x256",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#a37979",
+    "background_color": "#a37979",
+    "display": "standalone"
+}
