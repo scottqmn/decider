@@ -42,8 +42,7 @@ class ListItem extends Component {
   toggleWeight() {
     if (!this.props.options.weighted)
       alert("Enable weighted option first");
-    else
-      this.setState({centerContent: !this.state.centerContent});
+    this.setState({centerContent: !this.state.centerContent});
   }
 
   renderContent() {

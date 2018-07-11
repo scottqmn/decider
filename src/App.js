@@ -15,14 +15,16 @@ class App extends Component {
         autoDelete: false,
         dishonest: false,
         night: false,
-        popUp: true,
+        popUp: false,
         runnerUp: false,
         weighted: false
       },
       menu: false, // true: expanded menu (half list), false: collapsed menu (full list)
+
       list: ['Hike', 'Sleep', 'Code', 'Read', 'Cook', 'Write'],
       weights: [3, 3, 3, 3, 3, 3], //between 1-5, i.e. item with weight 5 is 5x more likely to be picked over item with weight 1
       selected: [-1, -2, -3], // last two indexes optional for runnerUp
+
       foolsGold: -1,
       info: "Hi, I'm Scott.\nThis is my first web app using ReactJS.\nI created this because my girlfriend and I hate having to decide on things.\nYes I was being petty."
 
@@ -31,9 +33,15 @@ class App extends Component {
     this.optionsToggle = this.optionsToggle.bind(this);
   }
 
-  clearAll() {
-    if (window.confirm('Are you sure you want to clear your list?'))
-      this.setState({list: [], selected: -1});
+  addItem(){
+    var item = document.getElementById("listItem").value;
+    console.log("Adding " + item);
+    if(item !== ""){
+      document.getElementById("listItem").value = "";
+      var newList = this.state.list.slice();
+      newList.push(item);
+      this.setState({list: newList});
+    }
   }
 
   delete(index) {
@@ -57,8 +65,13 @@ class App extends Component {
     this.setState({selected: newSelected});
   }
 
+  clearAll() {
+    if (window.confirm('Are you sure you want to clear your list?'))
+      this.setState({list: [], selected: -1});
+  }
+
+
   rename(index) {
-    //todo: figure out how to make this usable
     var newName = prompt("Rename item?");
     if (newName !== null && newName !== "") {
       var newList = this.state.list.slice();
@@ -76,21 +89,10 @@ class App extends Component {
     this.setState({weights: newWeights});
   }
 
-  addItem(){
-    var item = document.getElementById("listItem").value;
-    console.log("Adding " + item);
-    if(item !== ""){
-      document.getElementById("listItem").value = "";
-      var newList = this.state.list.slice();
-      newList.push(item);
-      this.setState({list: newList});
-    }
-  }
-
   decide(){
     var len = this.state.list.length;
 
-    //autoDelete: true
+    //check is autoDelete is enabled
     if(this.state.options.autoDelete && this.state.selected[0] >= 0){
       this.delete(this.state.selected[0]);
       len--;
@@ -99,12 +101,13 @@ class App extends Component {
 
     var gold;
 
+    //dishonest
     if (this.state.options.dishonest){
       gold = this.state.foolsGold;
       this.optionsToggle('dishonest');
     }
     else {
-      gold = (len > 0) ? Math.floor(Math.random() * len) : -1;
+      gold = this.pickRandom(len, 0, -1);
     }
 
     var silver = this.pickRandom(len, 1, -2);
@@ -120,7 +123,31 @@ class App extends Component {
   }
 
   pickRandom(len, min, def) {
+    if (this.state.options.weighted)
+      return this.pickWeighted(min, def);
+    
     return (len > min) ? Math.floor(Math.random() * len) : def;
+  }
+
+  pickWeighted(min, def) {
+    if (this.state.list.length <= min)
+      return def;
+
+    var weightLen = this.state.weights.reduce((x, y) => x + y);
+    var weightIndex = Math.ceil(Math.random() * weightLen);
+    var chosenIndex = 0;
+    var travelIndex = 1;
+
+    for (var i = 0; i < weightIndex; i++){
+      if (travelIndex > this.state.weights[chosenIndex]) {
+        travelIndex = 1;
+        chosenIndex++;
+      }
+      travelIndex++;
+    }
+
+    console.log(weightIndex + " " + chosenIndex);
+    return chosenIndex;
   }
 
   // Footer
@@ -128,7 +155,6 @@ class App extends Component {
     var newMenu = !this.state.menu;
     this.setState({menu: newMenu});
   }
-
 
   optionsToggle(property) {
     let newOptions = {...this.state.options};
@@ -156,7 +182,6 @@ class App extends Component {
 
 
   render() {
-
     var listItems = [];
     this.state.list.forEach((item, i) => {
       listItems.push(
@@ -164,7 +189,7 @@ class App extends Component {
           item={item} 
           key={i} 
           index={i}
-          weight={this.state.weights[i]} 
+          weight={this.state.weights[i]}
           selected={this.state.selected} 
           rename={() => this.rename(i)}
           delete={() => this.delete(i)} 
@@ -174,7 +199,6 @@ class App extends Component {
     });
 
     var selected = (this.state.selected[0] >= 0) ? this.state.list[this.state.selected[0]] : "Decide on something";
-
 
     return (
       <div id="interface" className={classPicker("interface", "night", "day", this.state.options.night)}>
