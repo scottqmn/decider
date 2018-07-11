@@ -3,7 +3,6 @@ import './Header.css';
 
 import homeIcon from '../images/home.png';
 import infoIcon from '../images/info.png';
-import Dice from '../images/dice.png';
 import {classPicker, invert} from '../Helper.js';
 
 class Header extends Component {
@@ -14,9 +13,7 @@ class Header extends Component {
                 <a className="header__icon" href={this.props.leftLink}>  
                     <img id="home" className={invert(this.props.options.night)} alt="home" src={homeIcon}/>
                 </a>
-                <a className="header__icon" onClick={null}>
-                    <img id="dice" className={invert(this.props.options.night)} alt="dice" src={Dice}/>
-                </a>
+                <p className="header__title">Decider</p>
                 <a className="header__icon" onClick={() => alert(this.props.info)}>
                     <img id="info" className={invert(this.props.options.night)} alt="info" src={infoIcon}/>
                 </a>

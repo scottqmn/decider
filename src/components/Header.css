@@ -44,10 +44,15 @@
 .header__icon {
   text-align: center;
   width: 15%;
-  padding: 0 4%;
+  padding: 0 2%;
 }
 
-.header__icon img{
+.header__title {
+  font-family: 'Lobster', cursive;
+  font-size: 1.7em;
+}
+
+.header__icon img {
   width: 80%;
   height: auto;
 }
