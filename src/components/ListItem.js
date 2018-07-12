@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './ListItem.css';
 
 import Menu from '../images/menu.png';
-import Cross from '../images/cross.png';
+import Delete from '../images/delete.png';
 import {classPicker} from '../Helper.js';
 
 class ListItem extends Component {
@@ -75,7 +75,7 @@ class ListItem extends Component {
           </div>
           {this.renderContent()}
           <div className="list-item__button" onClick={() => this.props.delete()}>
-            <img className="item__button--cross" src={Cross} alt="cross"/>
+            <img className="item__button--delete" src={Delete} alt="delete"/>
           </div>
         </div>
       </li>

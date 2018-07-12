@@ -4,7 +4,9 @@ import './App.css';
 import Header from './components/Header.js';
 import ListItem from './components/ListItem.js';
 import Footer from './components/Footer.js';
-import { classPicker } from './Helper.js';
+import Menu from './images/menu.png';
+import Weights from './images/weighted.png';
+import { classPicker, invert } from './Helper.js';
 
 
 class App extends Component {
@@ -40,7 +42,9 @@ class App extends Component {
       document.getElementById("listItem").value = "";
       var newList = this.state.list.slice();
       newList.push(item);
-      this.setState({list: newList});
+      var newWeights = this.state.weights.slice();
+      newWeights.push(3);
+      this.setState({list: newList, weights: newWeights});
     }
   }
 
@@ -67,7 +71,17 @@ class App extends Component {
 
   clearAll() {
     if (window.confirm('Are you sure you want to clear your list?'))
-      this.setState({list: [], selected: -1});
+      this.setState({list: [], weights: [], selected: [-1,-2,-3]});
+  }
+
+  resetWeights() {
+    if (window.confirm('Are you sure you want to reset weights?')) {
+      var newWeights = [];
+      for (var i = 0; i < this.state.list.length; i++) {
+        newWeights.push(3);
+      }
+      this.setState({weights: newWeights});
+    }
   }
 
 
@@ -96,7 +110,7 @@ class App extends Component {
     if(this.state.options.autoDelete && this.state.selected[0] >= 0){
       this.delete(this.state.selected[0]);
       len--;
-      //TODO: delete backup selections if runnerUp: true
+      //TODO: maybe delete backup selections if runnerUp: true
     }
 
     var gold;
@@ -180,23 +194,64 @@ class App extends Component {
     this.setState({foolsGold: cheat});
   }
 
+  renderContent() {
+    if (this.state.list.length > 0) {
+      var listItems = [];
+      this.state.list.forEach((item, i) => {
+        listItems.push(
+          <ListItem 
+            item={item} 
+            key={i} 
+            index={i}
+            weight={this.state.weights[i]}
+            selected={this.state.selected} 
+            rename={() => this.rename(i)}
+            delete={() => this.delete(i)} 
+            editWeight={(change) => this.editWeight(i, change)}
+            options={this.state.options} 
+          />)
+      });
+      return(
+        <div id="main-list" className="main-list">
+          <ul>
+            {listItems}
+          </ul>
+          <div className="main-list__option-container">
+
+            <div className="main-list__option">
+              <div onClick={() => this.clearAll()} className="main-list__option__img">
+                <img className={invert(this.state.options.night)} src={Menu} alt="Clear List"/>
+              </div>
+              <p className={classPicker("option-name", "night", "day", this.state.options.night)}>Clear List</p>
+            </div>
+
+            <div className="main-list__option">
+              <div onClick={() => this.resetWeights()} className="main-list__option__img">
+                <img className={invert(this.state.options.night)} src={Weights} alt="Reset Weights"/>
+              </div>
+              <p className={classPicker("option-name", "night", "day", this.state.options.night)}>Reset Weights</p>
+            </div>
+            
+          </div>
+        </div>
+      );
+    }
+    else {
+      return(
+        <div id="main-list" className="main-list">
+          <p className={classPicker("main-list__msg", "night", "day", this.state.options.night)}>
+            Nothing to decide from... 
+            <br/>
+            Try adding something!
+          </p>
+        </div>
+      );
+    }
+  }
+
 
   render() {
-    var listItems = [];
-    this.state.list.forEach((item, i) => {
-      listItems.push(
-        <ListItem 
-          item={item} 
-          key={i} 
-          index={i}
-          weight={this.state.weights[i]}
-          selected={this.state.selected} 
-          rename={() => this.rename(i)}
-          delete={() => this.delete(i)} 
-          editWeight={(change) => this.editWeight(i, change)}
-          options={this.state.options} 
-        />)
-    });
+    
 
     var selected = (this.state.selected[0] >= 0) ? this.state.list[this.state.selected[0]] : "Decide on something";
 
@@ -211,11 +266,7 @@ class App extends Component {
           />
         </div>
 
-        <div id="main-list" className="main-list">
-            <ul>
-                {listItems}
-            </ul>
-        </div>
+        {this.renderContent()}
 
         <div className={classPicker("footer-container", "full", "half", this.state.menu)}>
           <Footer 

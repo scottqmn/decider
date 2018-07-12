@@ -57,11 +57,6 @@
     vertical-align: middle;
 }
 
-
-.item__button--cross {
-    transform: rotate(45deg);
-}
-
 .list-item--non-selected {
     background-color: rgba(200, 200, 200, 0.5);
 }  
